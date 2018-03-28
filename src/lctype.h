@@ -28,6 +28,9 @@
 
 #endif
 
+#define lislalcyr(c)	( (c>=224 && c<=255) || (c>=192 && c<=223) || c==168 || c==184 )
+// #define lislalcyr(c)	( (c>='à' && c<='ÿ') || (c>='À' && c<='ß') )
+
 
 #if !LUA_USE_CTYPE	/* { */
 
@@ -54,8 +57,8 @@
 /*
 ** 'lalpha' (Lua alphabetic) and 'lalnum' (Lua alphanumeric) both include '_'
 */
-#define lislalpha(c)	testprop(c, MASK(ALPHABIT))
-#define lislalnum(c)	testprop(c, (MASK(ALPHABIT) | MASK(DIGITBIT)))
+#define lislalpha(c)	( lislalcyr(c) || testprop(c, MASK(ALPHABIT)) )
+#define lislalnum(c)	( lislalcyr(c) || testprop(c, (MASK(ALPHABIT) | MASK(DIGITBIT))) )
 #define lisdigit(c)	testprop(c, MASK(DIGITBIT))
 #define lisspace(c)	testprop(c, MASK(SPACEBIT))
 #define lisprint(c)	testprop(c, MASK(PRINTBIT))
@@ -79,9 +82,8 @@ LUAI_DDEC const lu_byte luai_ctype_[UCHAR_MAX + 2];
 
 #include <ctype.h>
 
-
-#define lislalpha(c)	(isalpha(c) || (c) == '_')
-#define lislalnum(c)	(isalnum(c) || (c) == '_')
+#define lislalpha(c)	( lislalcyr(c) || (isalpha(c) || (c) == '_') )
+#define lislalnum(c)	( lislalcyr(c) || (isalnum(c) || (c) == '_') )
 #define lisdigit(c)	(isdigit(c))
 #define lisspace(c)	(isspace(c))
 #define lisprint(c)	(isprint(c))

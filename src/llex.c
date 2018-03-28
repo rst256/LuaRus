@@ -46,6 +46,12 @@ static const char *const luaX_tokens [] = {
     "<<", ">>", "::", "<eof>",
     "<number>", "<integer>", "<name>", "<string>"
 };
+static const char *const luaX_tokens_cyr [] = {
+    "и", "стоп", "начало", "иначе", "иначеесли",
+    "все", "ложь", "для", "функция", "идина", "если",
+    "в", "локал", "нуль", "не", "или", "повторять",
+    "возврат", "тогда", "истина", "покуда", "пока"
+};
 
 
 #define save_and_next(ls) (save(ls, ls->current), next(ls))
@@ -76,6 +82,16 @@ void luaX_init (lua_State *L) {
     luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
     ts->extra = cast_byte(i+1);  /* reserved word */
   }
+
+  TString *e2 = luaS_newliteral(L, "_ОКР");  /* create env name */
+  luaC_fix(L, obj2gco(e2));  /* never collect this name */
+  for (i=0; i<22; i++) {
+    TString *ts = luaS_new(L, luaX_tokens_cyr[i]);
+    luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
+    ts->extra = cast_byte(i+1);  /* reserved word */
+  }
+
+
 }
 
 
@@ -526,6 +542,7 @@ static int llex (LexState *ls, SemInfo *seminfo) {
           do {
             save_and_next(ls);
           } while (lislalnum(ls->current));
+			// printf("\nluaX_newstring: \"%.*s\"\n", luaZ_bufflen(ls->buff), luaZ_buffer(ls->buff));
           ts = luaX_newstring(ls, luaZ_buffer(ls->buff),
                                   luaZ_bufflen(ls->buff));
           seminfo->ts = ts;
