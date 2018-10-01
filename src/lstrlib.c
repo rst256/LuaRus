@@ -1034,7 +1034,8 @@ static int str_format (lua_State *L) {
         luaL_argerror(L, arg, "no value");
       strfrmt = scanformat(L, strfrmt, form);
       switch (*strfrmt++) {
-        case 'c': {
+        case 'c': case 'б': {
+					form[strlen(form)-1] = 'c';
           nb = l_sprintf(buff, MAX_ITEM, form, (int)luaL_checkinteger(L, arg));
           break;
         }
@@ -1057,17 +1058,18 @@ static int str_format (lua_State *L) {
           nb = l_sprintf(buff, MAX_ITEM, form, (LUAI_UACNUMBER)n);
           break;
         }
-        case 'q': {
+        case 'q': case 'э': {
           addliteral(L, &b, arg);
           break;
         }
-        case 's': {
+        case 's': case 'с': {
           size_t l;
           const char *s = luaL_tolstring(L, arg, &l);
           if (form[2] == '\0')  /* no modifiers? */
             luaL_addvalue(&b);  /* keep entire string */
           else {
             luaL_argcheck(L, l == strlen(s), arg, "string contains zeros");
+						form[strlen(form)-1] = 's';
             if (!strchr(form, '.') && l >= 100) {
               /* no precision and string is too long to be formatted */
               luaL_addvalue(&b);  /* keep entire string */
@@ -1557,6 +1559,25 @@ static const luaL_Reg strlib[] = {
   {"pack", str_pack},
   {"packsize", str_packsize},
   {"unpack", str_unpack},
+
+  {"байт", str_byte},
+  {"симв", str_char},
+  {"дамп", str_dump},
+  {"найти", str_find},
+  {"формат", str_format},
+  {"гсопоставить", gmatch},
+  {"гзаменить", str_gsub},
+  {"длина", str_len},
+  {"прописные", str_lower},
+  {"сопоставить", str_match},
+  {"повторить", str_rep},
+  {"перевернуть", str_reverse},
+  {"подстр", str_sub},
+  {"строчные", str_upper},
+  {"упаковать", str_pack},
+  {"длинапак", str_packsize},
+  {"распаковать", str_unpack},
+
   {NULL, NULL}
 };
 

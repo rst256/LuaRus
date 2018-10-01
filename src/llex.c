@@ -48,9 +48,11 @@ static const char *const luaX_tokens [] = {
 };
 static const char *const luaX_tokens_cyr [] = {
     "и", "стоп", "начало", "иначе", "иначеесли",
-    "все", "ложь", "для", "функция", "идина", "если",
-    "в", "локал", "нуль", "не", "или", "повторять",
-    "возврат", "тогда", "истина", "покуда", "пока"
+    "конец", "ложь", "для", "функция", "идина", "если",
+    "из", "локал", "нуль", "не", "или", "повторять",
+    "возврат", "тогда", "истина", "покуда", "пока",
+    "//", "..", "...", "==", ">=", "<=", "!=",
+
 };
 
 
@@ -85,7 +87,7 @@ void luaX_init (lua_State *L) {
 
   TString *e2 = luaS_newliteral(L, "_ОКР");  /* create env name */
   luaC_fix(L, obj2gco(e2));  /* never collect this name */
-  for (i=0; i<22; i++) {
+  for (i=0; i<sizeof(luaX_tokens_cyr)/sizeof(luaX_tokens_cyr[i]); i++) {
     TString *ts = luaS_new(L, luaX_tokens_cyr[i]);
     luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
     ts->extra = cast_byte(i+1);  /* reserved word */
@@ -506,6 +508,11 @@ static int llex (LexState *ls, SemInfo *seminfo) {
         else return '/';
       }
       case '~': {
+        next(ls);
+        if (check_next1(ls, '=')) return TK_NE;
+        else return '~';
+      }
+      case '!': {
         next(ls);
         if (check_next1(ls, '=')) return TK_NE;
         else return '~';

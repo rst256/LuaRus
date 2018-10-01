@@ -479,6 +479,34 @@ static const luaL_Reg base_funcs[] = {
   /* placeholders */
   {"_G", NULL},
   {"_VERSION", NULL},
+
+  {"утв", luaB_assert},
+  {"собратьмусор", luaB_collectgarbage},
+  {"испфайл", luaB_dofile},
+  {"ощибка", luaB_error},
+  {"взятьметатаблицу", luaB_getmetatable},
+  {"ипары", luaB_ipairs},
+  {"загрузитьфайл", luaB_loadfile},
+  {"загрузить", luaB_load},
+#if defined(LUA_COMPAT_LOADSTRING)
+  {"загрузитьстроку", luaB_load},
+#endif
+  {"выбор", luaB_select},
+  {"устметатаблицу", luaB_setmetatable},
+  {"следующий", luaB_next},
+  {"пары", luaB_pairs},
+  {"рвызов", luaB_pcall},
+  {"печать", luaB_print},
+  {"сравнитьнапрямую", luaB_rawequal},
+  {"длинанапрямую", luaB_rawlen},
+  {"взятьнапрямую", luaB_rawget},
+  {"устнапрямую", luaB_rawset},
+  {"вчисло", luaB_tonumber},
+  {"встроку", luaB_tostring},
+  {"тип", luaB_type},
+  {"хрвызов", luaB_xpcall},
+  {"_ОКР", NULL},
+  {"_ВЕРСИЯ", NULL},
   {NULL, NULL}
 };
 
@@ -493,6 +521,14 @@ LUAMOD_API int luaopen_base (lua_State *L) {
   /* set global _VERSION */
   lua_pushliteral(L, LUA_VERSION);
   lua_setfield(L, -2, "_VERSION");
+
+  /* set global _G */
+  lua_pushvalue(L, -1);
+  lua_setfield(L, -2, "_ОКР");
+  /* set global _VERSION */
+  lua_pushliteral(L, "Луа " LUA_VERSION_MAJOR "." LUA_VERSION_MINOR);
+  lua_setfield(L, -2, "_ВЕРСИЯ");
+
   return 1;
 }
 

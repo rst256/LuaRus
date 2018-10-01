@@ -393,6 +393,11 @@ static const luaL_Reg syslib[] = {
   {"setlocale", os_setlocale},
   {"time",      os_time},
   {"tmpname",   os_tmpname},
+
+  {"выполнить",   os_execute},
+  {"время",      os_time},
+  {"выход",      os_exit},
+  {"устлокаль", os_setlocale},
   {NULL, NULL}
 };
 
