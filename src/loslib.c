@@ -395,6 +395,9 @@ static const luaL_Reg syslib[] = {
   {"tmpname",   os_tmpname},
 
   {"выполнить",   os_execute},
+  {"переименовать",    os_rename},
+  {"удалить",    os_remove},
+  {"дата",      os_date},
   {"время",      os_time},
   {"выход",      os_exit},
   {"устлокаль", os_setlocale},
