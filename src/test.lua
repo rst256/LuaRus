@@ -7,7 +7,7 @@
 
 
 
--- ос.выход()
+ -- ос.выход()
 
 
 
@@ -19,7 +19,7 @@
 
 ос.выполнить'@chcp 1251'
 ллл=9
---печать=print
+
 кон={}
 кон.печать=печать
 кон.печать'ллл='
@@ -35,26 +35,5 @@
 
 локал фмт = "%-20с: %с %4б"
 для к,з из пары(_ОКР) начало
-	печать(фмт:формат(строка.строчные(к),встроку(з), (";"):байт()))
+	печать(фмт:формат((к),встроку(з), (";"):байт()))
 конец
--- print'"гІҐ вґ¤гЎ мЅ­н±інјў'
--- print(
--- 	assert(io.open('test.txt', 'r'), 'can\'t read file "test.txt"'):read"*a"
--- )
-
--- s = tostring(io.stdin:read'*l')
--- print('"'..s..'"')
--- assert(io.opn('test.txt', 'w'), 'can\'t write file "test.txt"'):write(s)
-
--- class c1 do
--- 	function c1_f1()
--- function ff()
---   
--- end
--- 	  return 666
--- 	end
--- end
--- class c2 do end
-
--- print('c1, c2', c1, c2)
--- print('c1_f1', c1_f1, ff)
