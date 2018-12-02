@@ -721,6 +721,15 @@ static const luaL_Reg flib[] = {
   {"write", f_write},
   {"__gc", f_gc},
   {"__tostring", f_tostring},
+
+  {"закрыть", io_close},
+  {"flush", f_flush},
+  {"строки", f_lines},
+  {"читать", f_read},
+  {"seek", f_seek},
+  {"setvbuf", f_setvbuf},
+  {"write", f_write},
+
   {NULL, NULL}
 };
 

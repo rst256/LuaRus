@@ -496,7 +496,7 @@ static const luaL_Reg base_funcs[] = {
   {"следующий", luaB_next},
   {"пары", luaB_pairs},
   {"рвызов", luaB_pcall},
-  {"печать", luaB_print},
+  {"\xD0\xBF\xD0\xB5\xD1\x87\xD0\xB0\xD1\x82\xD1\x8C", luaB_print},
   {"сравнитьнапрямую", luaB_rawequal},
   {"длинанапрямую", luaB_rawlen},
   {"взятьнапрямую", luaB_rawget},
@@ -505,7 +505,8 @@ static const luaL_Reg base_funcs[] = {
   {"встроку", luaB_tostring},
   {"тип", luaB_type},
   {"хрвызов", luaB_xpcall},
-  {"_ОКР", NULL},
+  // {"_ОКР", NULL},
+  {"\x5F\xD0\x9E\xD0\x9A\xD0\xA0", NULL},
   {"_ВЕРСИЯ", NULL},
   {NULL, NULL}
 };
@@ -516,6 +517,10 @@ LUAMOD_API int luaopen_base (lua_State *L) {
   lua_pushglobaltable(L);
   luaL_setfuncs(L, base_funcs, 0);
   /* set global _G */
+  // lua_pushvalue(L, -1);
+// const char s[] = { '_', 208,158,208,154,208,160,0 };
+// lua_pushstring(L, s);
+// lua_settable(L, -3);
   lua_pushvalue(L, -1);
   lua_setfield(L, -2, "_G");
   /* set global _VERSION */
@@ -524,8 +529,13 @@ LUAMOD_API int luaopen_base (lua_State *L) {
 
   /* set global _G */
   lua_pushvalue(L, -1);
-  lua_setfield(L, -2, "_ОКР");
-  /* set global _VERSION */
+  // lua_setfield(L, -2, s);
+  // lua_pushvalue(L, -1);
+  lua_setfield(L, -2, "\x5F\xD0\x9E\xD0\x9A\xD0\xA0");
+//   lua_pushvalue(L, -1);
+// lua_pushliteral(L, "_\208\158\208\154\208\160");
+// lua_settable(L, -3);
+ /* set global _VERSION */
   lua_pushliteral(L, "Луа " LUA_VERSION_MAJOR "." LUA_VERSION_MINOR);
   lua_setfield(L, -2, "_ВЕРСИЯ");
 

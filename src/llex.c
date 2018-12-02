@@ -28,9 +28,70 @@
 #include "lzio.h"
 
 
+#define MAXUNICODE	0x10FFFF
 
-#define next(ls) (ls->current = zgetc(ls->z))
+// int zutf8_decode (LexState *ls) {
+//   static const unsigned int limits[] = {0xFF, 0x7F, 0x7FF, 0xFFFF};
+//   int c = zgetc(ls->z);
+//   unsigned int res = 0;  /* final result */
+//   if (c < 0x80)  /* ascii? */
+//     res = c;
+//   else {
+//     int count = 0;  /* to count number of continuation bytes */
+//     while (c & 0x40) {  /* still have continuation bytes? */
+//       int cc = zgetc(ls->z);  /* read next byte */
+//       if ((cc & 0xC0) != 0x80)  /* not a continuation byte? */
+//         return -1;  /* invalid byte sequence */
+//       res = (res << 6) | (cc & 0x3F);  /* add lower 6 bits from cont. byte */
+//       c <<= 1;  /* to test next bit */
+//     }
+//     res |= ((c & 0x7F) << (count * 5));  /* add first byte */
+//     if (count > 3 || res > MAXUNICODE || res <= limits[count])
+//       return -1;  /* invalid byte sequence */
+//     // s += count;  /* skip continuation bytes read */
+//   }
+//   // if (val) *val = res;
+// 	ls->current_utf = res;
+//   return c;  /* +1 to include first byte */
+// }
 
+
+// #define next(ls) (ls->current = zutf8_decode(ls))
+#define next(ls) (ls->previous = ls->current, ls->current = zgetc(ls->z))
+
+
+#define MAXUNICODE	0x10FFFF
+
+long next1 (LexState *ls) {
+	struct Zio * z = ls->z;
+  static const unsigned int limits[] = {0xFF, 0x7F, 0x7FF, 0xFFFF};
+  // const unsigned char *s = (const unsigned char *)o;
+  int c = zgetc(z);
+
+  unsigned int res = 0;  /* final result */
+  if (c < 0x80)  /* ascii? */
+    res = c;
+  else {
+    int count = 0;  /* to count number of continuation bytes */
+    while (c & 0x40) {  /* still have continuation bytes? */
+      int cc = zgetc(z);  /* read next byte */
+			count++;
+      if ((cc & 0xC0) != 0x80)  /* not a continuation byte? */
+        // return 0;  /* invalid byte sequence */
+				luaX_syntaxerror(ls, "invalid byte sequence\n");
+      res = (res << 6) | (cc & 0x3F);  /* add lower 6 bits from cont. byte */
+      c <<= 1;  /* to test next bit */
+    }
+    res |= ((c & 0x7F) << (count * 5));  /* add first byte */
+    if (count > 3 || res > MAXUNICODE || res <= limits[count])
+      // return 0;  /* invalid byte sequence */
+				luaX_syntaxerror(ls, "invalid byte sequence2\n");
+    // s += count;  /* skip continuation bytes read */
+  }
+	ls->current = res;
+  return res;
+  // return (const char *)s + 1;  /* +1 to include first byte */
+}
 
 
 #define currIsNewline(ls)	(ls->current == '\n' || ls->current == '\r')
@@ -52,6 +113,13 @@ static const char *const luaX_tokens_cyr [] = {
     "из", "локал", "нуль", "не", "или", "повторять",
     "возврат", "тогда", "истина", "покуда", "пока",
     "//", "..", "...", "==", ">=", "<=", "!=",
+
+};
+static const char *const luaX_tokens_cyr_utf8 [] = {
+    "\xD0\xB8", "\xD1\x81\xD1\x82\xD0\xBE\xD0\xBF", "\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB0\xD0\xBB\xD0\xBE", "\xD0\xB8\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB5", "\xD0\xB8\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB5\xD0\xB5\xD1\x81\xD0\xBB\xD0\xB8",
+    "\xD0\xBA\xD0\xBE\xD0\xBD\xD0\xB5\xD1\x86", "\xD0\xBB\xD0\xBE\xD0\xB6\xD1\x8C", "\xD0\xB4\xD0\xBB\xD1\x8F", "\xD1\x84\xD1\x83\xD0\xBD\xD0\xBA\xD1\x86\xD0\xB8\xD1\x8F", "`идина", "\xD0\xB5\xD1\x81\xD0\xBB\xD0\xB8", 
+    "\xD0\xB8\xD0\xB7", "\xD0\xBB\xD0\xBE\xD0\xBA\xD0\xB0\xD0\xBB", "нуль", "не", "\xD0\xB8\xD0\xBB\xD0\xB8", "повторять",
+    "\xD0\xB2\xD0\xBE\xD0\xB7\xD0\xB2\xD1\x80\xD0\xB0\xD1\x82", "\xD1\x82\xD0\xBE\xD0\xB3\xD0\xB4\xD0\xB0", "\xD0\xB8\xD1\x81\xD1\x82\xD0\xB8\xD0\xBD\xD0\xB0", "покуда", "\xD0\xBF\xD0\xBE\xD0\xBA\xD0\xB0",
 
 };
 
@@ -76,7 +144,7 @@ static void save (LexState *ls, int c) {
 
 
 void luaX_init (lua_State *L) {
-  int i;
+  size_t i;
   TString *e = luaS_newliteral(L, LUA_ENV);  /* create env name */
   luaC_fix(L, obj2gco(e));  /* never collect this name */
   for (i=0; i<NUM_RESERVED; i++) {
@@ -87,8 +155,15 @@ void luaX_init (lua_State *L) {
 
   TString *e2 = luaS_newliteral(L, "_ОКР");  /* create env name */
   luaC_fix(L, obj2gco(e2));  /* never collect this name */
-  for (i=0; i<sizeof(luaX_tokens_cyr)/sizeof(luaX_tokens_cyr[i]); i++) {
-    TString *ts = luaS_new(L, luaX_tokens_cyr[i]);
+  e2 = luaS_newliteral(L, "\x5F\xD0\x9E\xD0\x9A\xD0\xA0");  /* create env name */
+  luaC_fix(L, obj2gco(e2));  /* never collect this name */
+  // for (i=0; i<sizeof(luaX_tokens_cyr)/sizeof(luaX_tokens_cyr[i]); i++) {
+  //   TString *ts = luaS_new(L, luaX_tokens_cyr[i]);
+  //   luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
+  //   ts->extra = cast_byte(i+1);  /* reserved word */
+  // }
+  for (i=0; i<sizeof(luaX_tokens_cyr_utf8)/sizeof(luaX_tokens_cyr_utf8[i]); i++) {
+    TString *ts = luaS_new(L, luaX_tokens_cyr_utf8[i]);
     luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
     ts->extra = cast_byte(i+1);  /* reserved word */
   }
