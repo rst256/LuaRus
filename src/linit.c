@@ -54,9 +54,10 @@ static const luaL_Reg loadedlibs[] = {
   {LUA_BITLIBNAME, luaopen_bit32},
 #endif
 
-  {"_ОКР", luaopen_base},
-  {"ос", luaopen_os},
-  {"строка", luaopen_string},
+  {"\x5F\xD0\x9E\xD0\x9A\xD0\xA0", luaopen_base},
+  {"\xD0\xBE\xD1\x81", luaopen_os},
+  {"\xD1\x81\xD1\x82\xD1\x80\xD0\xBE\xD0\xBA\xD0\xB0", luaopen_string},
+  {"\xD0\xB2\xD0\xB2", luaopen_io},
   {NULL, NULL}
 };
 

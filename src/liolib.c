@@ -253,6 +253,11 @@ static int io_open (lua_State *L) {
   const char *mode = luaL_optstring(L, 2, "r");
   LStream *p = newfile(L);
   const char *md = mode;  /* to traverse/check mode */
+	if(md[0]=='\xD1'){
+		if(md[1]=='\x87'){
+			md = "r";
+		}
+	}
   luaL_argcheck(L, l_checkmode(md), 2, "invalid mode");
   p->f = fopen(filename, mode);
   return (p->f == NULL) ? luaL_fileresult(L, 0, filename) : 1;
@@ -555,6 +560,25 @@ static int g_read (lua_State *L, FILE *f, int first) {
             read_all(L, f);  /* read entire file */
             success = 1; /* always success */
             break;
+					case '\xD0':
+		        switch (*++p) {
+		          case '\xBD':  /* number */
+		            success = read_number(L, f);
+		            break;
+		          case '\xBB':  /* line */
+		            success = read_line(L, f, 1);
+		            break;
+		          case '\x9B':  /* line with end-of-line */
+		            success = read_line(L, f, 0);
+		            break;
+		          case '\xB2':  /* file */
+		            read_all(L, f);  /* read entire file */
+		            success = 1; /* always success */
+		            break;
+		          default:
+		            return luaL_argerror(L, n, "invalid format");
+						}
+            break;
           default:
             return luaL_argerror(L, n, "invalid format");
         }
@@ -704,6 +728,12 @@ static const luaL_Reg iolib[] = {
   {"tmpfile", io_tmpfile},
   {"type", io_type},
   {"write", io_write},
+
+  {"\xD0\xBF\xD0\xBE\xD1\x81\xD1\x82\xD1\x80\xD0\xBE\xD1\x87\xD0\xBD\xD0\xBE", io_lines},
+  {"\xD0\xBE\xD1\x82\xD0\xBA\xD1\x80\xD1\x8B\xD1\x82\xD1\x8C", io_open},
+  {"\xD0\xB7\xD0\xB0\xD0\xBA\xD1\x80\xD1\x8B\xD1\x82\xD1\x8C", io_close},
+  {"\xD1\x81\xD0\xB1\xD1\x80\xD0\xBE\xD1\x81", io_flush},
+
   {NULL, NULL}
 };
 
@@ -722,13 +752,13 @@ static const luaL_Reg flib[] = {
   {"__gc", f_gc},
   {"__tostring", f_tostring},
 
-  {"закрыть", io_close},
-  {"flush", f_flush},
-  {"строки", f_lines},
-  {"читать", f_read},
-  {"seek", f_seek},
-  {"setvbuf", f_setvbuf},
-  {"write", f_write},
+  {"\xD0\xB7\xD0\xB0\xD0\xBA\xD1\x80\xD1\x8B\xD1\x82\xD1\x8C", io_close},
+  {"\xD1\x81\xD0\xB1\xD1\x80\xD0\xBE\xD1\x81", f_flush},
+  {"\xD0\xBF\xD0\xBE\xD1\x81\xD1\x82\xD1\x80\xD0\xBE\xD1\x87\xD0\xBD\xD0\xBE", f_lines},
+  {"\xD1\x87\xD0\xB8\xD1\x82\xD0\xB0\xD1\x82\xD1\x8C", f_read},
+  {"\xD1\x81\xD0\xB4\xD0\xB2\xD0\xB8\xD0\xB3", f_seek},
+  // {"setvbuf", f_setvbuf},
+  {"\xD0\xB7\xD0\xB0\xD0\xBF\xD0\xB8\xD1\x81\xD1\x8C", f_write},
 
   {NULL, NULL}
 };
@@ -776,9 +806,9 @@ LUAMOD_API int luaopen_io (lua_State *L) {
   createstdfile(L, stdout, IO_OUTPUT, "stdout");
   createstdfile(L, stderr, NULL, "stderr");
 
-  createstdfile(L, stdin, IO_INPUT, "ввод");
-  createstdfile(L, stdout, IO_OUTPUT, "stdout");
-  createstdfile(L, stderr, NULL, "stderr");
+  createstdfile(L, stdin, IO_INPUT, "\xD0\xB2\xD0\xB2\xD0\xBE\xD0\xB4");
+  createstdfile(L, stdout, IO_OUTPUT, "\xD0\xB2\xD1\x8B\xD0\xB2\xD0\xBE\xD0\xB4");
+  createstdfile(L, stderr, NULL, "\xD1\x81\xD0\xB1\xD0\xBE\xD0\xB9");
 
 
   return 1;
