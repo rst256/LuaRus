@@ -775,6 +775,12 @@ LUAMOD_API int luaopen_io (lua_State *L) {
   createstdfile(L, stdin, IO_INPUT, "stdin");
   createstdfile(L, stdout, IO_OUTPUT, "stdout");
   createstdfile(L, stderr, NULL, "stderr");
+
+  createstdfile(L, stdin, IO_INPUT, "ввод");
+  createstdfile(L, stdout, IO_OUTPUT, "stdout");
+  createstdfile(L, stderr, NULL, "stderr");
+
+
   return 1;
 }
 
