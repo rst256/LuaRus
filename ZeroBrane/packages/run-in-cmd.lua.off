@@ -1,0 +1,49 @@
+local G = ...
+local cs_toolbar_id = G.ID("run_in_cmd.toolbar_show_dialog")
+
+local function cs_run()
+
+
+end
+
+return {
+  name = "run_in_cmd",
+  description = "run_in_cmd",
+  author = "rst256",
+  version = 0.1,
+  dependencies = 1.0,
+
+	onInterpreterLoad = function(_, interpreter)
+		local _frun = interpreter.frun
+		interpreter.frun = function(this, wfilename, rundebug)
+			local outfile = wfilename:GetFullPath()
+			if rundebug then return _frun(this, wfilename, rundebug) end
+			return os.execute('"C:\\Lua\\5.1\\lua.exe" "'..
+				outfile..'" && pause')
+		end
+	end,
+
+	onRegister = function(self)
+--		ide:AddTool(TR(self.name), cs_run)
+
+
+--		ide:GetToolBar():AddTool(cs_toolbar_id, TR(self.name),
+--			wx.wxArtProvider.GetBitmap(wx.wxART_NEW,
+--			wx.wxART_MENU, ide:GetToolBar():GetToolBitmapSize()),
+--			TR(self.name)
+--		)
+
+--		ide:GetMainFrame():Connect(cs_toolbar_id,
+--			wx.wxEVT_COMMAND_MENU_SELECTED, cs_run)
+
+--		ide:GetToolBar():Realize()
+	end,
+
+  onUnRegister = function(self)
+--		ide:GetToolBar():DeleteTool(cs_toolbar_id)
+--    ide:GetToolBar():Realize()
+--		ide:RemoveTool(TR(self.name))
+--		ide:GetMainFrame().uimgr:Update()
+  end,
+}
+

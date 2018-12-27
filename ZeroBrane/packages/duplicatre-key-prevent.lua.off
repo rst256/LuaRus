@@ -1,0 +1,21 @@
+local prev_time, prev_key = os.clock()
+local keypress_timeout = 0.1
+return {
+  name = "Duplicatre key prevent",
+  description = [[Just for the lulz.
+	Don't use this as permanent fix, you need buy new keyboard.
+	]],
+  author = "rst56",
+  version = 0.1,
+
+  onEditorCharAdded = function(self, editor, event)
+		local keycode, difftime = event:GetKey(), os.clock()-prev_time
+		if prev_key==keycode and difftime<keypress_timeout then
+			editor:DeleteRange(editor:GetCurrentPos()-1, 1)
+			event:Skip()
+		end
+		prev_key, prev_time = keycode, os.clock()
+  end,
+}
+--pprrrrrrrrrrrr
+

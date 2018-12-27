@@ -1,0 +1,138 @@
+local function exePath1(self, version)
+  local version = tostring(version or ""):gsub('%.','')
+  local mainpath = ide:GetRootPath()
+  local macExe = mainpath..([[bin/lua.app/Contents/MacOS/lua%s]]):format(version)
+  return [[C:\dev\lua514-tokenf-win32\lua.exe]]
+--	ide.config.path['lua'..version]
+--     or (ide.osname == "Windows" and mainpath..([[bin\lua%s.exe]]):format(version))
+--     or (ide.osname == "Unix" and mainpath..([[bin/linux/%s/lua%s]]):format(ide.osarch, version))
+--     or (wx.wxFileExists(macExe) and macExe or mainpath..([[bin/lua%s]]):format(version))
+end
+dofile 'interpreters/luabase.lua'
+local interpreter = MakeLuaInterpreter(5.1, ' 5.1')
+interpreter.skipcompile = true
+interpreter.name = 'LuaMacro'
+interpreter.fexepath = exePath1
+--return interpreter
+--local frun_old=interpreter.frun
+  interpreter.frun =   function(self,wfilename,rundebug)
+    local exe = self:fexepath(version or "")
+    local filepath = wfilename:GetFullPath()
+
+    do
+      -- if running on Windows and can't open the file, this may mean that
+      -- the file path includes unicode characters that need special handling
+      local fh = io.open(filepath, "r")
+      if fh then fh:close() end
+      if ide.osname == 'Windows' and pcall(require, "winapi")
+      and wfilename:FileExists() and not fh then
+        winapi.set_encoding(winapi.CP_UTF8)
+        local shortpath = winapi.short_path(filepath)
+        if shortpath == filepath then
+          DisplayOutputLn(
+            ("Can't get short path for a Unicode file name '%s' to open the file.")
+            :format(filepath))
+          DisplayOutputLn(
+            ("You can enable short names by using `fsutil 8dot3name set %s: 0` and recreate the file or directory.")
+            :format(wfilename:GetVolume()))
+        end
+        filepath = shortpath
+      end
+    end
+
+    if rundebug then
+      DebuggerAttachDefault({runstart = ide.config.debugger.runonstart == true})
+
+      -- update arg to point to the proper file
+      rundebug = ('if arg then arg[0] = [[%s]] end '):format(filepath)..rundebug
+
+      local tmpfile = wx.wxFileName()
+      tmpfile:AssignTempFileName(".")
+      filepath = tmpfile:GetFullPath()
+      local f = io.open(filepath, "w")
+      if not f then
+        DisplayOutputLn("Can't open temporary file '"..filepath.."' for writing.")
+        return
+      end
+      f:write(rundebug)
+      f:close()
+    end
+    local params = ide.config.arg.any or ide.config.arg.lua
+    local code = ([[ -lmacro -e "io.stdout:setvbuf('no')" "%s"]]):format(filepath)
+    local cmd = '"'..exe..'" '..code..(params and " "..params or "")
+
+    -- modify CPATH to work with other Lua versions
+    local envname = "LUA_CPATH"
+    if version then
+      local env = "LUA_CPATH_"..string.gsub(version, '%.', '_')
+      if os.getenv(env) then envname = env end
+    end
+
+    local cpath = os.getenv(envname)
+    if rundebug and cpath and not ide.config.path['lua'..(version or "")] then
+      -- prepend osclibs as the libraries may be needed for debugging,
+      -- but only if no path.lua is set as it may conflict with system libs
+      wx.wxSetEnv(envname, ide.osclibs..';'..cpath)
+    end
+    if version and cpath then
+      local cpath = os.getenv(envname)
+      local clibs = string.format('/clibs%s/', version):gsub('%.','')
+      if not cpath:find(clibs, 1, true) then cpath = cpath:gsub('/clibs/', clibs) end
+      wx.wxSetEnv(envname, cpath)
+    end
+
+    -- CommandLineRun(cmd,wdir,tooutput,nohide,stringcallback,uid,endcallback)
+    local pid = CommandLineRun(cmd,self:fworkdir(wfilename),true,false,nil,nil,
+      function() if rundebug then wx.wxRemoveFile(filepath) end end)
+
+    if (rundebug or version) and cpath then wx.wxSetEnv(envname, cpath) end
+    return pid
+  end
+
+--function(self, v,rundebug)
+--		local out_file = v:GetFullPath():gsub('%.xlua$', '.gen.lua')
+--    CommandLineRun(
+--			exePath1(self, 5.3)..[[ C:\dev\crack\xlua.lua ]]..v:GetFullPath()..
+--				' '..out_file,
+--			self:fworkdir(v),
+--			true,
+--			false
+--		)
+--		frun_old(self, wx.wxFileName(out_file),rundebug)
+--  end
+--local interpreter = {
+--  name = "xlua",
+--  description = "XLua interpreter",
+--  api = {"baselib", "sample"},
+--  frun = function(self, v,rundebug)
+--		local out_file = v:GetFullPath():gsub('%.xlua$', '.gen.lua')
+--    CommandLineRun(
+--			exePath1(self, 5.3)..[[ C:\dev\crack\xlua.lua ]]..v:GetFullPath()..
+--				' '..out_file,
+--			self:fworkdir(v),
+--			true,
+--			false
+--		)
+--		interpreter1:frun(wx.wxFileName(out_file),rundebug)
+--  end,
+--  hasdebugger = true,
+--  fattachdebug = function(self) DebuggerAttachDefault() end,
+--}
+
+return {
+  name = "LuaMacro",
+  description = "LuaMacro...",
+  author = "rst256",
+  version = 0.1,
+
+  onRegister = function(self)
+    -- add interpreter with name "sample"
+    ide:AddInterpreter("LuaMacro", interpreter)
+  end,
+
+  onUnRegister = function(self)
+    -- remove interpreter with name "sample"
+    ide:RemoveInterpreter("LuaMacro")
+  end,
+}
+

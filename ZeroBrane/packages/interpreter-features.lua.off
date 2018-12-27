@@ -1,0 +1,116 @@
+local G = ...
+local raw_frun
+
+local project_tools = { name='project_tools' }
+
+local preproc_file_types = { pp=true }
+local preproc_cmds = {}
+
+
+function preproc_cmds:define(l)
+	local name, args = l:match'([%w_]+)%s*(.*)'
+--	DisplayOutputLn(name..', '..args)
+	self.defines[name] = args
+	local s, ss = 'return function '..args..'\n', '--@define '..name..args..'\n'
+	for ll in self.lines do
+		ss = ss .. '--' .. ll .. '\n'
+		if ll:find'^%s*@%s*end' then break end
+		s = s .. ll .. '\n'
+	end
+	s = s .. 'end\n'
+	local f = assert(load(s, name, 't', G))()
+	preproc_cmds[name] = f
+	return ss
+end
+
+local strlit_pairs = {
+  ['"'] = '"', ["'"] = "'", ["[["] = "]]"
+}
+
+local ptrn_macro = '^%s*@%s*([%w_]+)%s*(.*)'
+
+local function preproc_file(srcfile, outfile)
+	local out = assert(io.open(outfile, 'w'))
+	local _lines=assert(io.open(srcfile)):lines()
+	local ctx = {
+		defines={},
+		line=0,
+		source=srcfile,
+	}
+	function ctx.lines(...)
+		ctx.line = ctx.line + 1
+		return _lines(...)
+	end
+	local is_strlit
+	for l in ctx.lines do
+
+		local macro, opts = l:match(ptrn_macro)
+		if  not is_strlit and macro then
+
+			out:write(preproc_cmds[macro](ctx, opts) or '', '\n')
+		else
+			for li, ll in l:gmatch'([%[%]])%1()' do
+
+				if is_strlit and li==']' then
+					is_strlit = nil
+					DisplayOutputLn(ctx.source..':'..ctx.line..': '..li..', '..ll)
+				elseif not is_strlit and li=='[' then
+					is_strlit = ctx.line
+				end
+			end
+			out:write(l, '\n')
+		end
+	end
+	out:close()
+end
+
+local function _onInterpreterLoad(_, interpreter)
+--	if raw_frun	and
+	local interpreter = interpreter or ide:GetInterpreter()
+	raw_frun = interpreter.frun
+	interpreter.frun = function(this, wfilename, rundebug)
+
+		local outfile, ext = wfilename:GetFullPath()
+			:match'^(.-)%.(.-)%..+$'
+		if ext and preproc_file_types[ext] then
+			outfile = outfile..'.'..wfilename:GetExt()
+			local src_t, out_t =
+				wx.wxFileModificationTime(wfilename:GetFullPath()):GetTicks(),
+				wx.wxFileModificationTime(outfile):GetTicks()
+			if src_t>out_t then
+				DisplayOutputLn('PreProcessing file: `'..
+					wfilename:GetFullPath()..'`')
+				preproc_file(wfilename:GetFullPath(), outfile)
+			end
+			return raw_frun(this, wx.wxFileName(outfile), rundebug)
+		end
+		return raw_frun(this, wfilename, rundebug)
+	end
+end
+
+return {
+  name = "interpreter features",
+  description = "Add some interpreter features",
+  author = "rst256",
+  version = 0.1,
+  dependencies = 1.0,
+
+	onRegister = function(self)
+--		_onInterpreterLoad(self, ide:GetInterpreter())
+	end,
+
+	onProjectLoad = function(self, project)
+		_onInterpreterLoad(self, ide:GetInterpreter())
+	end,
+
+
+
+	onInterpreterLoad = _onInterpreterLoad,
+
+  onUnRegister = function(self)
+		if raw_frun then
+			ide:GetInterpreter().frun = raw_frun
+		end
+  end,
+}
+

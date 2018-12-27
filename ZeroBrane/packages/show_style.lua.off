@@ -1,0 +1,23 @@
+local G = ...
+
+local lexemes_style = {
+
+}
+--[[h]]
+return {
+  name = "Show style",
+  description = "Show style in current pos",
+  author = "rst256",
+  version = 0.1,
+  dependencies = 1.0,
+
+	onEditorKeyDown = function(self, editor, event)
+		local i = editor.CurrentPos
+		ide:GetStatusBar():SetStatusText(
+			'style: '..editor:GetStyleAt(editor.CurrentPos)..
+			"  char: '"..string.char(editor:GetCharAt(i)).."'",
+		4)
+	end
+
+}
+

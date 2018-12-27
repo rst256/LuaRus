@@ -1,0 +1,43 @@
+local G = ...
+
+
+local wxID_menu_show_dialog = G.ID("backup.menu_show_dialog")
+local wxID_toolbar_show_dialog = G.ID("backup.toolbar_show_dialog")
+
+local function do_backup(self)
+	local _, doc = next(ide:GetDocuments())
+	DisplayOutputLn(doc.filePath)
+end
+
+return {
+  name = "Backup",
+  description = "Plugins manager tool",
+  author = "rst256",
+  version = 0.1,
+  dependencies = 1.0,
+
+	onRegister = function(self)
+
+		ide:AddTool(TR(self.name), function()
+			do_backup(self)
+		end)
+
+		ide:GetToolBar():AddTool(wxID_toolbar_show_dialog, TR(self.name),
+			wx.wxArtProvider.GetBitmap(wx.wxART_CDROMj,
+			wx.wxART_MENU, ide:GetToolBar():GetToolBitmapSize()))
+		ide:GetMainFrame():Connect(wxID_toolbar_show_dialog,
+			wx.wxEVT_COMMAND_MENU_SELECTED, function()
+				do_backup(self)
+		end)
+		ide:GetToolBar():Realize()
+	end,
+
+
+  onUnRegister = function(self)
+		ide:GetToolBar():DeleteTool(wxID_toolbar_show_dialog)
+    ide:GetToolBar():Realize()
+		ide:RemoveTool(TR(self.name))
+		ide:GetMainFrame().uimgr:Update()
+  end,
+}
+
