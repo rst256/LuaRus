@@ -69,7 +69,7 @@ static int l_checkmode (const char *mode) {
 /* ISO C definitions */
 #define l_popen(L,c,m)  \
 	  ((void)((void)c, m), \
-	  luaL_error(L, "'popen' not supported"), \
+	  luaL_error(L, MSG("'popen' not supported", "\x27\xd0\xbe\xd1\x82\xd0\xba\xd1\x80\xd1\x8b\xd1\x82\xd1\x8c\xd0\xbf\xd1\x80\x27\x20\xd0\xbd\xd0\xb5\x20\xd0\xbf\xd0\xbe\xd0\xb4\xd0\xb4\xd0\xb5\xd1\x80\xd0\xb6\xd0\xb8\xd0\xb2\xd0\xb0\xd0\xb5\xd1\x82\xd1\x81\xd1\x8f")), \
 	  (FILE*)0)
 #define l_pclose(L,file)		((void)L, (void)file, -1)
 
@@ -174,7 +174,7 @@ static int f_tostring (lua_State *L) {
 static FILE *tofile (lua_State *L) {
   LStream *p = tolstream(L);
   if (isclosed(p))
-    luaL_error(L, "attempt to use a closed file");
+    luaL_error(L, MSG("attempt to use a closed file", "\xd0\xbf\xd0\xbe\xd0\xbf\xd1\x8b\xd1\x82\xd0\xba\xd0\xb0\x20\xd0\xb8\xd1\x81\xd0\xbf\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xb7\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd1\x8c\x20\xd0\xb7\xd0\xb0\xd0\xba\xd1\x80\xd1\x8b\xd1\x82\xd1\x8b\xd0\xb9\x20\xd1\x84\xd0\xb0\xd0\xb9\xd0\xbb"));
   lua_assert(p->f);
   return p->f;
 }
@@ -244,7 +244,7 @@ static void opencheck (lua_State *L, const char *fname, const char *mode) {
   LStream *p = newfile(L);
   p->f = fopen(fname, mode);
   if (p->f == NULL)
-    luaL_error(L, "cannot open file '%s' (%s)", fname, strerror(errno));
+    luaL_error(L, MSG("cannot open file '%s' (%s)", "\xd0\xbd\xd0\xb5 \xd0\xbc\xd0\xbe\xd0\xb3\xd1\x83\x20\xd0\xbe\xd1\x82\xd0\xba\xd1\x80\xd1\x8b\xd1\x82\xd1\x8c\x20\xd1\x84\xd0\xb0\xd0\xb9\xd0\xbb '%s' (%s)"), fname, strerror(errno));
 }
 
 
@@ -258,7 +258,7 @@ static int io_open (lua_State *L) {
 			md = "r";
 		}
 	}
-  luaL_argcheck(L, l_checkmode(md), 2, "invalid mode");
+  luaL_argcheck(L, l_checkmode(md), 2, MSG("invalid mode", "\xd0\xbd\xd0\xb5\xd0\xbf\xd1\x80\xd0\xb0\xd0\xb2\xd0\xb8\xd0\xbb\xd1\x8c\xd0\xbd\xd1\x8b\xd0\xb9\x20\xd1\x80\xd0\xb5\xd0\xb6\xd0\xb8\xd0\xbc"));
   p->f = fopen(filename, mode);
   return (p->f == NULL) ? luaL_fileresult(L, 0, filename) : 1;
 }
@@ -772,7 +772,6 @@ static void createmeta (lua_State *L) {
   lua_pop(L, 1);  /* pop new metatable */
 }
 
-
 /*
 ** function to (not) close the standard files stdin, stdout, and stderr
 */
@@ -780,7 +779,7 @@ static int io_noclose (lua_State *L) {
   LStream *p = tolstream(L);
   p->closef = &io_noclose;  /* keep file opened */
   lua_pushnil(L);
-  lua_pushliteral(L, "cannot close standard file");
+  lua_pushliteral(L, MSG("cannot close standard file", "\xd0\xbd\xd0\xb5 \xd0\xbc\xd0\xbe\xd0\xb3\xd1\x83\x20\xd0\xb7\xd0\xb0\xd0\xba\xd1\x80\xd1\x8b\xd1\x82\xd1\x8c\x20\xd1\x81\xd1\x82\xd0\xb0\xd0\xbd\xd0\xb4\xd0\xb0\xd1\x80\xd1\x82\xd0\xbd\xd1\x8b\xd0\xb9\x20\xd1\x84\xd0\xb0\xd0\xb9\xd0\xbb"));
   return 2;
 }
 
