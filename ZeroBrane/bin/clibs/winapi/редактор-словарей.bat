@@ -1,0 +1,1 @@
+lua.exe dict-editor.wx.lua

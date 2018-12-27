@@ -1,0 +1,1 @@
+lua53.exe translate.lua %1 %2 %3

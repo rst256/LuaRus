@@ -1,0 +1,4 @@
+#!/bin/bash
+
+if [[ "$(uname -m)" == "x86_64" ]]; then ARCH="x64"; else ARCH="x86"; fi
+(cd "@IDE_DATADIR@"; bin/linux/$ARCH/lua src/main.lua zbstudio "$@") &

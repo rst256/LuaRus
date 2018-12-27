@@ -1,0 +1,4 @@
+LIBRARY ltcc.dll
+
+EXPORTS
+luaopen_ltcc
