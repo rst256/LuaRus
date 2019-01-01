@@ -49,6 +49,29 @@ void luaT_init (lua_State *L) {
     G(L)->tmname[i] = luaS_new(L, luaT_eventname[i]);
     luaC_fix(L, obj2gco(G(L)->tmname[i]));  /* never collect these names */
   }
+
+  static const char *const luaT_eventname_cyr[] = {  /* ORDER TM */
+    "__\xd0\xb8\xd0\xbd\xd0\xb4\xd0\xb5\xd0\xba\xd1\x81", "__\xd0\xbd\xd0\xbe\xd0\xb2\xd1\x8b\xd0\xb9",
+
+    "__\xd1\x81\xd0\xb1", "__\xd1\x80\xd0\xb5\xd0\xb6\xd0\xb8\xd0\xbc", "__\xd1\x80\xd0\xb0\xd0\xb7\xd0\xbc\xd0\xb5\xd1\x80", "__\xd1\x80\xd0\xb0\xd0\xb2\xd0\xbd\xd0\xbe",
+
+    "__\xd1\x81\xd0\xbb\xd0\xbe\xd0\xb6", "__\xd0\xb2\xd1\x8b\xd1\x87", "__\xd1\x83\xd0\xbc\xd0\xbd\xd0\xbe\xd0\xb6", "__\xd0\xbe\xd1\x81\xd1\x82", "__\xd1\x81\xd1\x82\xd0\xb5\xd0\xbf",
+
+    "__\xd0\xb4\xd0\xb5\xd0\xbb", "__\xd1\x86\xd0\xb5\xd0\xbb\xd0\xb4\xd0\xb5\xd0\xbb",
+
+    "__\xd0\xb8", "__\xd0\xb8\xd0\xbb\xd0\xb8", "__\xd0\xb8\xd0\xbb\xd0\xb8\xd0\xbd\xd0\xb5", "__\xd1\x81\xd0\xb4\xd0\xb2\xd0\xb8\xd0\xb3\xd0\xbb", "__\xd1\x81\xd0\xb4\xd0\xb2\xd0\xb8\xd0\xb3\xd0\xbf",
+
+    "__\xd1\x83\xd0\xbd\xd0\xbc", "__\xd0\xbd\xd0\xb5", "__\xd0\xbc\xd0\xb5\xd0\xbd\xd1\x8c\xd1\x88\xd0\xb5", "__\xd0\xbd\xd0\xb5\xd0\xb1\xd0\xbe\xd0\xbb\xd0\xb5\xd0\xb5",
+
+    "__\xd0\xba\xd0\xbe\xd0\xbd\xd0\xba\xd0\xb0\xd1\x82", "__\xd0\xb2\xd1\x8b\xd0\xb7\xd0\xbe\xd0\xb2"
+  };
+  for (i=0; i<TM_N; i++) {
+ // printf("%s:%s\n", luaT_eventname_cyr[i], luaT_eventname[i]);
+    G(L)->tmname_cyr[i] = luaS_new(L, luaT_eventname_cyr[i]);
+    luaC_fix(L, obj2gco(G(L)->tmname_cyr[i]));  /* never collect these names */
+  }
+
+
 }
 
 
@@ -60,6 +83,18 @@ const TValue *luaT_gettm (Table *events, TMS event, TString *ename) {
   const TValue *tm = luaH_getshortstr(events, ename);
   lua_assert(event <= TM_EQ);
   if (ttisnil(tm)) {  /* no tag method? */
+    events->flags |= cast_byte(1u<<event);  /* cache this fact */
+    return NULL;
+  }
+  else return tm;
+}
+
+const TValue *luaT_gettm2 (Table *events, TMS event, TString *ename, TString *ename2) {
+  const TValue *tm = luaH_getshortstr(events, ename);
+  lua_assert(event <= TM_EQ);
+  if (ttisnil(tm)) {  /* no tag method? */
+		tm = luaH_getshortstr(events, ename2);
+		if (!ttisnil(tm)) return tm;
     events->flags |= cast_byte(1u<<event);  /* cache this fact */
     return NULL;
   }
@@ -79,7 +114,12 @@ const TValue *luaT_gettmbyobj (lua_State *L, const TValue *o, TMS event) {
     default:
       mt = G(L)->mt[ttnov(o)];
   }
-  return (mt ? luaH_getshortstr(mt, G(L)->tmname[event]) : luaO_nilobject);
+	if(mt){
+		const TValue * e = luaH_getshortstr(mt, G(L)->tmname_cyr[event]);
+		if(ttisnil(e)) e = luaH_getshortstr(mt, G(L)->tmname[event]);
+		return e;
+	}
+  return luaO_nilobject;
 }
 
 

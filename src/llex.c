@@ -611,6 +611,13 @@ static int llex (LexState *ls, SemInfo *seminfo) {
         else if (!lisdigit(ls->current)) return '.';
         else return read_numeral(ls, seminfo);
       }
+      case 226: {  /* '.', '..', '...', or number */
+        next(ls);
+        if (check_next1(ls, 0x84) && check_next1(ls, 0x96))
+					return '#';   /* '...' */
+
+        //else return '\xE2';
+      }
       case '0': case '1': case '2': case '3': case '4':
       case '5': case '6': case '7': case '8': case '9': {
         return read_numeral(ls, seminfo);

@@ -46,7 +46,8 @@ typedef enum {
 
 
 #define gfasttm(g,et,e) ((et) == NULL ? NULL : \
-  ((et)->flags & (1u<<(e))) ? NULL : luaT_gettm(et, e, (g)->tmname[e]))
+  ((et)->flags & (1u<<(e))) ? NULL : luaT_gettm2(et, e, (g)->tmname_cyr[e], (g)->tmname[e]))
+  // ((et)->flags & (1u<<(e))) ? NULL : luaT_gettm(et, e, (g)->tmname[e]))
 
 #define fasttm(l,et,e)	gfasttm(G(l), et, e)
 
@@ -58,6 +59,7 @@ LUAI_DDEC const char *const luaT_typenames_[LUA_TOTALTAGS];
 LUAI_FUNC const char *luaT_objtypename (lua_State *L, const TValue *o);
 
 LUAI_FUNC const TValue *luaT_gettm (Table *events, TMS event, TString *ename);
+LUAI_FUNC const TValue *luaT_gettm2 (Table *events, TMS event, TString *ename, TString *ename2);
 LUAI_FUNC const TValue *luaT_gettmbyobj (lua_State *L, const TValue *o,
                                                        TMS event);
 LUAI_FUNC void luaT_init (lua_State *L);
