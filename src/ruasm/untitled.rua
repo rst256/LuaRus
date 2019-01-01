@@ -13,7 +13,7 @@ function оп(optype, mode)
 		output=(mode:find'o' ~= nil)
 	}
 
-	return setmetatable(this, operand_mt)
+	return устметатаб(this, operand_mt)
 end
 
 x86_64=затребуй("x86_64")
