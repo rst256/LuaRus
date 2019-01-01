@@ -724,8 +724,10 @@ static const luaL_Reg pk_funcs[] = {
 static const luaL_Reg ll_funcs[] = {
 #if defined(LUA_COMPAT_MODULE)
   {"module", ll_module},
+  {"\xd0\xbc\xd0\xbe\xd0\xb4\xd1\x83\xd0\xbb\xd1\x8c", ll_module},
 #endif
   {"require", ll_require},
+  {"\xd0\xb7\xd0\xb0\xd1\x82\xd1\x80\xd0\xb5\xd0\xb1\xd1\x83\xd0\xb9", ll_require},
   {NULL, NULL}
 };
 
