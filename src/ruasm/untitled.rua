@@ -1,0 +1,21 @@
+local operand_mt = {
+	__tostring=function(self)
+		return (self.input and 'in ' or '')
+			..(self.output and 'out ' or '')
+			..self.optype
+	end
+}
+function оп(optype, mode)
+	local mode = mode or ''
+	local this = {
+		optype=optype,
+		input=(mode:find'i' ~= nil),
+		output=(mode:find'o' ~= nil)
+	}
+
+	return setmetatable(this, operand_mt)
+end
+
+x86_64=затребуй("x86_64")
+
+печать()

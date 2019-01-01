@@ -1,0 +1,1483 @@
+return {
+{
+		['path'] = 	[[git://github.com/LuaDist/zlib.git]],
+		['name'] = 	[[zlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/zip.git]],
+		['name'] = 	[[zip]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/xstring.git]],
+		['name'] = 	[[xstring]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/xssfilter.git]],
+		['name'] = 	[[xssfilter]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/xavante.git]],
+		['name'] = 	[[xavante]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/wxlua.git]],
+		['name'] = 	[[wxlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/versium.git]],
+		['name'] = 	[[versium]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/venv.git]],
+		['name'] = 	[[venv]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/unzip.git]],
+		['name'] = 	[[unzip]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/toluapp.git]],
+		['name'] = 	[[toluapp]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/tokyocabinet.git]],
+		['name'] = 	[[tokyocabinet]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/tcc.git]],
+		['name'] = 	[[tcc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sputnik_tickets.git]],
+		['name'] = 	[[sputnik_tickets]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sputnik_markitup.git]],
+		['name'] = 	[[sputnik_markitup]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sputnik.git]],
+		['name'] = 	[[sputnik]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sool.git]],
+		['name'] = 	[[sool]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/slnunicode.git]],
+		['name'] = 	[[slnunicode]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/slncrypto.git]],
+		['name'] = 	[[slncrypto]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/simulua.git]],
+		['name'] = 	[[simulua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/shake.git]],
+		['name'] = 	[[shake]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/scite.git]],
+		['name'] = 	[[scite]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/scintilla.git]],
+		['name'] = 	[[scintilla]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/saci.git]],
+		['name'] = 	[[saci]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/rings.git]],
+		['name'] = 	[[rings]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/remdebug.git]],
+		['name'] = 	[[remdebug]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/regex.git]],
+		['name'] = 	[[regex]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/recaptcha.git]],
+		['name'] = 	[[recaptcha]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/qtlua.git]],
+		['name'] = 	[[qtlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/pluto.git]],
+		['name'] = 	[[pluto]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/penlight.git]],
+		['name'] = 	[[penlight]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/pcre.git]],
+		['name'] = 	[[pcre]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/openssl.git]],
+		['name'] = 	[[openssl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/onig.git]],
+		['name'] = 	[[onig]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/olua.git]],
+		['name'] = 	[[olua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/objl.git]],
+		['name'] = 	[[objl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/objectlua.git]],
+		['name'] = 	[[objectlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/numlua.git]],
+		['name'] = 	[[numlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mixlua.git]],
+		['name'] = 	[[mixlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/md5.git]],
+		['name'] = 	[[md5]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/markdown.git]],
+		['name'] = 	[[markdown]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mapm.git]],
+		['name'] = 	[[mapm]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lzlib.git]],
+		['name'] = 	[[lzlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lv3.git]],
+		['name'] = 	[[lv3]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lunit.git]],
+		['name'] = 	[[lunit]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luma.git]],
+		['name'] = 	[[luma]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luazip.git]],
+		['name'] = 	[[luazip]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaxml.git]],
+		['name'] = 	[[luaxml]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaunit.git]],
+		['name'] = 	[[luaunit]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luatask.git]],
+		['name'] = 	[[luatask]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasys.git]],
+		['name'] = 	[[luasys]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-sqlite3.git]],
+		['name'] = 	[[luasql-sqlite3]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-sqlite.git]],
+		['name'] = 	[[luasql-sqlite]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-mysql.git]],
+		['name'] = 	[[luasql-mysql]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasoap.git]],
+		['name'] = 	[[luasoap]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasec.git]],
+		['name'] = 	[[luasec]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaprofiler.git]],
+		['name'] = 	[[luaprofiler]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaposix.git]],
+		['name'] = 	[[luaposix]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luapod.git]],
+		['name'] = 	[[luapod]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luapi.git]],
+		['name'] = 	[[luapi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lualogging.git]],
+		['name'] = 	[[lualogging]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lualnum.git]],
+		['name'] = 	[[lualnum]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lualibusb.git]],
+		['name'] = 	[[lualibusb]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luajson.git]],
+		['name'] = 	[[luajson]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luajit.git]],
+		['name'] = 	[[luajit]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luajava.git]],
+		['name'] = 	[[luajava]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaidl.git]],
+		['name'] = 	[[luaidl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luagraph.git]],
+		['name'] = 	[[luagraph]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaglut.git]],
+		['name'] = 	[[luaglut]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luagl.git]],
+		['name'] = 	[[luagl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luagd.git]],
+		['name'] = 	[[luagd]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luafish.git]],
+		['name'] = 	[[luafish]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaffi.git]],
+		['name'] = 	[[luaffi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaexpat.git]],
+		['name'] = 	[[luaexpat]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luaex.git]],
+		['name'] = 	[[luaex]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadoc.git]],
+		['name'] = 	[[luadoc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadate.git]],
+		['name'] = 	[[luadate]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacurl.git]],
+		['name'] = 	[[luacurl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacrypto.git]],
+		['name'] = 	[[luacrypto]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacov.git]],
+		['name'] = 	[[luacov]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacontractor.git]],
+		['name'] = 	[[luacontractor]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacom.git]],
+		['name'] = 	[[luacom]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luabitop.git]],
+		['name'] = 	[[luabitop]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luabind.git]],
+		['name'] = 	[[luabind]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-xmlreader.git]],
+		['name'] = 	[[lua-xmlreader]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lsqlite3.git]],
+		['name'] = 	[[lsqlite3]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib.git]],
+		['name'] = 	[[lrexlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrandom.git]],
+		['name'] = 	[[lrandom]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lpeg.git]],
+		['name'] = 	[[lpeg]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lpc.git]],
+		['name'] = 	[[lpc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lpack.git]],
+		['name'] = 	[[lpack]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/loop.git]],
+		['name'] = 	[[loop]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lmock.git]],
+		['name'] = 	[[lmock]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lmathx.git]],
+		['name'] = 	[[lmathx]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lmapm.git]],
+		['name'] = 	[[lmapm]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lip.git]],
+		['name'] = 	[[lip]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libzzip.git]],
+		['name'] = 	[[libzzip]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libtiff.git]],
+		['name'] = 	[[libtiff]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libsqlite3.git]],
+		['name'] = 	[[libsqlite3]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libpng.git]],
+		['name'] = 	[[libpng]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libmng.git]],
+		['name'] = 	[[libmng]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libjpeg.git]],
+		['name'] = 	[[libjpeg]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libgdbm.git]],
+		['name'] = 	[[libgdbm]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libffi.git]],
+		['name'] = 	[[libffi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libexpat.git]],
+		['name'] = 	[[libexpat]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libdevil.git]],
+		['name'] = 	[[libdevil]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libarchive.git]],
+		['name'] = 	[[libarchive]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lgpc.git]],
+		['name'] = 	[[lgpc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lgdbm.git]],
+		['name'] = 	[[lgdbm]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/leg.git]],
+		['name'] = 	[[leg]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lcms2.git]],
+		['name'] = 	[[lcms2]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lcms.git]],
+		['name'] = 	[[lcms]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lbci.git]],
+		['name'] = 	[[lbci]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lbc.git]],
+		['name'] = 	[[lbc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lbase64.git]],
+		['name'] = 	[[lbase64]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lazykit.git]],
+		['name'] = 	[[lazykit]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lascii85.git]],
+		['name'] = 	[[lascii85]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lanes.git]],
+		['name'] = 	[[lanes]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lalarm.git]],
+		['name'] = 	[[lalarm]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/kepler.git]],
+		['name'] = 	[[kepler]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/gzio.git]],
+		['name'] = 	[[gzio]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/gslshell.git]],
+		['name'] = 	[[gslshell]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/gsl.git]],
+		['name'] = 	[[gsl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/gpc.git]],
+		['name'] = 	[[gpc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/glew.git]],
+		['name'] = 	[[glew]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/getopt.git]],
+		['name'] = 	[[getopt]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/genx.git]],
+		['name'] = 	[[genx]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/freeglut.git]],
+		['name'] = 	[[freeglut]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/fcgi.git]],
+		['name'] = 	[[fcgi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/etree.git]],
+		['name'] = 	[[etree]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/epeg.git]],
+		['name'] = 	[[epeg]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/diluculum.git]],
+		['name'] = 	[[diluculum]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/diff.git]],
+		['name'] = 	[[diff]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/dado.git]],
+		['name'] = 	[[dado]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/coxpcall.git]],
+		['name'] = 	[[coxpcall]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/cosmo.git]],
+		['name'] = 	[[cosmo]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/copas.git]],
+		['name'] = 	[[copas]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/config.git]],
+		['name'] = 	[[config]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/concurrentlua.git]],
+		['name'] = 	[[concurrentlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/classlib.git]],
+		['name'] = 	[[classlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/cheese.git]],
+		['name'] = 	[[cheese]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/cgilua.git]],
+		['name'] = 	[[cgilua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bzip2.git]],
+		['name'] = 	[[bzip2]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bitlib.git]],
+		['name'] = 	[[bitlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bin2clua.git]],
+		['name'] = 	[[bin2clua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/alien.git]],
+		['name'] = 	[[alien]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/abelhas.git]],
+		['name'] = 	[[abelhas]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasocket.git]],
+		['name'] = 	[[luasocket]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua.git]],
+		['name'] = 	[[lua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luafilesystem.git]],
+		['name'] = 	[[luafilesystem]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-stdlib.git]],
+		['name'] = 	[[lua-stdlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/batteries.git]],
+		['name'] = 	[[batteries]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/oil.git]],
+		['name'] = 	[[oil]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/librs232.git]],
+		['name'] = 	[[librs232]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lemock.git]],
+		['name'] = 	[[lemock]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/wsapi.git]],
+		['name'] = 	[[wsapi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/vstruct.git]],
+		['name'] = 	[[vstruct]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luarocks.git]],
+		['name'] = 	[[luarocks]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-colors.git]],
+		['name'] = 	[[lua-colors]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-matrix.git]],
+		['name'] = 	[[lua-matrix]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bootstrap.git]],
+		['name'] = 	[[bootstrap]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/metalua.git]],
+		['name'] = 	[[metalua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/curl.git]],
+		['name'] = 	[[curl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-curl.git]],
+		['name'] = 	[[lua-curl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-postgresql.git]],
+		['name'] = 	[[luasql-postgresql]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-odbc.git]],
+		['name'] = 	[[luasql-odbc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql-firebird.git]],
+		['name'] = 	[[luasql-firebird]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libsqlite.git]],
+		['name'] = 	[[libsqlite]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/wxwidgets.git]],
+		['name'] = 	[[wxwidgets]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libgd.git]],
+		['name'] = 	[[libgd]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libmysql.git]],
+		['name'] = 	[[libmysql]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/moonscript.git]],
+		['name'] = 	[[moonscript]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/alt-getopt.git]],
+		['name'] = 	[[alt-getopt]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-bit-numberlua.git]],
+		['name'] = 	[[lua-bit-numberlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-compress-deflatelua.git]],
+		['name'] = 	[[lua-compress-deflatelua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-digest-crc32lua.git]],
+		['name'] = 	[[lua-digest-crc32lua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-pythonic-optparse.git]],
+		['name'] = 	[[lua-pythonic-optparse]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasrcdiet.git]],
+		['name'] = 	[[luasrcdiet]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-cjson.git]],
+		['name'] = 	[[lua-cjson]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-openssl.git]],
+		['name'] = 	[[lua-openssl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libpq.git]],
+		['name'] = 	[[libpq]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/ldoc.git]],
+		['name'] = 	[[ldoc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadocer.git]],
+		['name'] = 	[[luadocer]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luametrics.git]],
+		['name'] = 	[[luametrics]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luapretty.git]],
+		['name'] = 	[[luapretty]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadist-git.git]],
+		['name'] = 	[[luadist-git]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-testmore.git]],
+		['name'] = 	[[lua-testmore]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-testlongstring.git]],
+		['name'] = 	[[lua-testlongstring]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-codegen.git]],
+		['name'] = 	[[lua-codegen]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-spore.git]],
+		['name'] = 	[[lua-spore]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-coat.git]],
+		['name'] = 	[[lua-coat]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-coatpersistent.git]],
+		['name'] = 	[[lua-coatpersistent]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-zmq.git]],
+		['name'] = 	[[lua-zmq]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libzmq.git]],
+		['name'] = 	[[libzmq]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luanativeobjects.git]],
+		['name'] = 	[[luanativeobjects]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/tlc.git]],
+		['name'] = 	[[tlc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-apr.git]],
+		['name'] = 	[[lua-apr]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/apr.git]],
+		['name'] = 	[[apr]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lmd5.git]],
+		['name'] = 	[[lmd5]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luuid.git]],
+		['name'] = 	[[luuid]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/redis.git]],
+		['name'] = 	[[redis]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-hiredis.git]],
+		['name'] = 	[[lua-hiredis]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luamotif.git]],
+		['name'] = 	[[luamotif]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libbsd.git]],
+		['name'] = 	[[libbsd]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/srlua.git]],
+		['name'] = 	[[srlua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-iconv.git]],
+		['name'] = 	[[lua-iconv]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libiconv.git]],
+		['name'] = 	[[libiconv]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lcomplex.git]],
+		['name'] = 	[[lcomplex]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/orbit.git]],
+		['name'] = 	[[orbit]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-xmlrpc.git]],
+		['name'] = 	[[lua-xmlrpc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mk.git]],
+		['name'] = 	[[mk]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/wsapi_basic_auth.git]],
+		['name'] = 	[[wsapi_basic_auth]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lapack.git]],
+		['name'] = 	[[lapack]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-uri.git]],
+		['name'] = 	[[lua-uri]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-signal.git]],
+		['name'] = 	[[lua-signal]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-tinycdb.git]],
+		['name'] = 	[[lua-tinycdb]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-memoryfile.git]],
+		['name'] = 	[[lua-memoryfile]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-discount.git]],
+		['name'] = 	[[lua-discount]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-tokyocabinet.git]],
+		['name'] = 	[[lua-tokyocabinet]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasql.git]],
+		['name'] = 	[[luasql]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/freetype.git]],
+		['name'] = 	[[freetype]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/im.git]],
+		['name'] = 	[[im]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/iup.git]],
+		['name'] = 	[[iup]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/cd.git]],
+		['name'] = 	[[cd]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/cd-examples.git]],
+		['name'] = 	[[cd-examples]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/im-examples.git]],
+		['name'] = 	[[im-examples]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/iup-examples.git]],
+		['name'] = 	[[iup-examples]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/squish.git]],
+		['name'] = 	[[squish]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luapgsql.git]],
+		['name'] = 	[[luapgsql]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sigar.git]],
+		['name'] = 	[[sigar]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib-tre.git]],
+		['name'] = 	[[lrexlib-tre]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib-oniguruma.git]],
+		['name'] = 	[[lrexlib-oniguruma]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib-gnu.git]],
+		['name'] = 	[[lrexlib-gnu]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib-pcre.git]],
+		['name'] = 	[[lrexlib-pcre]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lrexlib-posix.git]],
+		['name'] = 	[[lrexlib-posix]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/tre.git]],
+		['name'] = 	[[tre]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/ninja.git]],
+		['name'] = 	[[ninja]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-git.git]],
+		['name'] = 	[[lua-git]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mobdebug.git]],
+		['name'] = 	[[mobdebug]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/zerobranestudio.git]],
+		['name'] = 	[[zerobranestudio]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/30log.git]],
+		['name'] = 	[[30log]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/ansicolors.git]],
+		['name'] = 	[[ansicolors]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/asklua.git]],
+		['name'] = 	[[asklua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadist-activate.git]],
+		['name'] = 	[[luadist-activate]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/winapi.git]],
+		['name'] = 	[[winapi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bencode.git]],
+		['name'] = 	[[bencode]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/bit32.git]],
+		['name'] = 	[[bit32]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/busted.git]],
+		['name'] = 	[[busted]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua_cliargs.git]],
+		['name'] = 	[[lua_cliargs]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/dkjson.git]],
+		['name'] = 	[[dkjson]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/say.git]],
+		['name'] = 	[[say]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luassert.git]],
+		['name'] = 	[[luassert]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-zlib.git]],
+		['name'] = 	[[lua-zlib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/intellua.git]],
+		['name'] = 	[[intellua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lsocket.git]],
+		['name'] = 	[[lsocket]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lpty.git]],
+		['name'] = 	[[lpty]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lub.git]],
+		['name'] = 	[[lub]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lut.git]],
+		['name'] = 	[[lut]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-websockets.git]],
+		['name'] = 	[[lua-websockets]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libev.git]],
+		['name'] = 	[[libev]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-ev.git]],
+		['name'] = 	[[lua-ev]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luadist.git]],
+		['name'] = 	[[luadist]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua_bufflib.git]],
+		['name'] = 	[[lua_bufflib]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/libsophia.git]],
+		['name'] = 	[[libsophia]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-sophia.git]],
+		['name'] = 	[[lua-sophia]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mingw.git]],
+		['name'] = 	[[mingw]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-llthreads.git]],
+		['name'] = 	[[lua-llthreads]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/xml.git]],
+		['name'] = 	[[xml]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-llthreads2.git]],
+		['name'] = 	[[lua-llthreads2]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-llthreads2-compat.git]],
+		['name'] = 	[[lua-llthreads2-compat]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-log.git]],
+		['name'] = 	[[lua-log]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-sendmail.git]],
+		['name'] = 	[[lua-sendmail]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-pdh.git]],
+		['name'] = 	[[lua-pdh]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-AesFileEncrypt.git]],
+		['name'] = 	[[lua-AesFileEncrypt]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-pop3.git]],
+		['name'] = 	[[lua-pop3]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-path.git]],
+		['name'] = 	[[lua-path]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/struct.git]],
+		['name'] = 	[[struct]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lzmq.git]],
+		['name'] = 	[[lzmq]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-odbc.git]],
+		['name'] = 	[[lua-odbc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/ZipWriter.git]],
+		['name'] = 	[[ZipWriter]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lzmq-ffi.git]],
+		['name'] = 	[[lzmq-ffi]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lualiterate.git]],
+		['name'] = 	[[lualiterate]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacomments.git]],
+		['name'] = 	[[luacomments]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/sdl.git]],
+		['name'] = 	[[sdl]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lutok.git]],
+		['name'] = 	[[lutok]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/xlsxwriter.git]],
+		['name'] = 	[[xlsxwriter]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/basexx.git]],
+		['name'] = 	[[basexx]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-cmsgpack.git]],
+		['name'] = 	[[lua-cmsgpack]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/tolua.git]],
+		['name'] = 	[[tolua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/getdoc.git]],
+		['name'] = 	[[getdoc]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/mediator_lua.git]],
+		['name'] = 	[[mediator_lua]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-plantuml.git]],
+		['name'] = 	[[lua-plantuml]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/StackTracePlus.git]],
+		['name'] = 	[[StackTracePlus]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luasystem.git]],
+		['name'] = 	[[luasystem]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-term.git]],
+		['name'] = 	[[lua-term]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/luacheck.git]],
+		['name'] = 	[[luacheck]],
+		['version'] = 	[[scm]],
+	},
+{
+		['path'] = 	[[git://github.com/LuaDist/lua-resty-template.git]],
+		['name'] = 	[[lua-resty-template]],
+		['version'] = 	[[scm]],
+	},
+},
+true
