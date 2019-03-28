@@ -717,6 +717,18 @@ static const luaL_Reg pk_funcs[] = {
   {"path", NULL},
   {"searchers", NULL},
   {"loaded", NULL},
+
+  {"\xd0\xb7\xd0\xb0\xd0\xb3\xd1\x80\xd1\x83\xd0\xb7\xd0\xb8\xd1\x82\xd1\x8c", ll_loadlib},
+  {"\xd0\xbd\xd0\xb0\xd0\xb9\xd1\x82\xd0\xb8\xd0\xbf\xd1\x83\xd1\x82\xd1\x8c", ll_searchpath},
+#if defined(LUA_COMPAT_MODULE)
+  {"\xd1\x81\xd0\xbc\xd0\xbe\xd1\x82\xd1\x80\xd0\xb5\xd1\x82\xd1\x8c\xd0\xb2\xd1\x81\xd0\xb5", ll_seeall},
+#endif
+  /* placeholders */
+  // {"предзагр", NULL},
+  // {"сипуть", NULL},
+  // {"путь", NULL},
+  // {"searchers", NULL},
+  // {"loaded", NULL},
   {NULL, NULL}
 };
 

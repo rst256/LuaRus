@@ -388,6 +388,47 @@ static const luaL_Reg mathlib[] = {
   {"huge", NULL},
   {"maxinteger", NULL},
   {"mininteger", NULL},
+
+
+  {"\xd0\xb0\xd0\xb1\xd1\x81",   math_abs},
+  {"\xd0\xb0\xd0\xba\xd0\xbe\xd1\x81",  math_acos},
+  {"\xd0\xb0\xd1\x81\xd0\xb8\xd0\xbd",  math_asin},
+  {"\xd0\xb0\xd1\x82\xd0\xb0\xd0\xbd",  math_atan},
+  // {"ceil",  math_ceil},
+  {"\xd0\xba\xd0\xbe\xd1\x81",   math_cos},
+  // {"deg",   math_deg},
+  {"\xd0\xb5\xd0\xba\xd1\x81\xd0\xbf",   math_exp},
+  {"\xd0\xb2\xd1\x86\xd0\xb5\xd0\xbb\xd0\xbe\xd0\xb5", math_toint},
+  // {"floor", math_floor},
+  // {"fmod",   math_fmod},
+  // {"ult",   math_ult},
+  // {"log",   math_log},
+  // {"max",   math_max},
+  // {"min",   math_min},
+  // {"modf",   math_modf},
+  // {"rad",   math_rad},
+  // {"random",     math_random},
+  // {"randomseed", math_randomseed},
+  // {"sin",   math_sin},
+  // {"sqrt",  math_sqrt},
+  // {"tan",   math_tan},
+  // {"type", math_type},
+#if defined(LUA_COMPAT_MATHLIB)
+  // {"atan2", math_atan},
+  // {"cosh",   math_cosh},
+  // {"sinh",   math_sinh},
+  // {"tanh",   math_tanh},
+  // {"pow",   math_pow},
+  // {"frexp", math_frexp},
+  // {"ldexp", math_ldexp},
+  // {"log10", math_log10},
+#endif
+  /* placeholders */
+  {"\xd0\xbf\xd0\xb8", NULL},
+  {"\xd0\xb1\xd0\xb5\xd1\x81\xd0\xba\xd0\xbe\xd0\xbd", NULL},
+  {"\xd0\xbd\xd0\xb0\xd0\xb8\xd0\xb1\xd1\x86\xd0\xb5\xd0\xbb", NULL},
+  {"\xd0\xbd\xd0\xb0\xd0\xb8\xd0\xbc\xd1\x86\xd0\xb5\xd0\xbb", NULL},
+
   {NULL, NULL}
 };
 
@@ -405,6 +446,15 @@ LUAMOD_API int luaopen_math (lua_State *L) {
   lua_setfield(L, -2, "maxinteger");
   lua_pushinteger(L, LUA_MININTEGER);
   lua_setfield(L, -2, "mininteger");
+
+  lua_pushnumber(L, PI);
+  lua_setfield(L, -2, "\xd0\xbf\xd0\xb8");
+  lua_pushnumber(L, (lua_Number)HUGE_VAL);
+  lua_setfield(L, -2, "\xd0\xb1\xd0\xb5\xd1\x81\xd0\xba\xd0\xbe\xd0\xbd");
+  lua_pushinteger(L, LUA_MAXINTEGER);
+  lua_setfield(L, -2, "\xd0\xbd\xd0\xb0\xd0\xb8\xd0\xb1\xd1\x86\xd0\xb5\xd0\xbb");
+  lua_pushinteger(L, LUA_MININTEGER);
+  lua_setfield(L, -2, "\xd0\xbd\xd0\xb0\xd0\xb8\xd0\xbc\xd1\x86\xd0\xb5\xd0\xbb");
   return 1;
 }
 

@@ -241,6 +241,24 @@ static int str_tokenize_aux (lua_State *L) {
 // 		    printf("str: `%.*s`\n", tok_end-tok_start+1, tok_start);
 // 				src = tok_end;
 		    break; }
+			case '~': 
+				gm->col++;
+		    if(*tok_end=='='){
+					gm->col++;++tok_end;
+					capture_toks("noteq");
+				}else{ capture_toks("bnot"); }
+		    break;
+			case '=': 
+				gm->col++;
+		    if(*tok_end=='='){
+					gm->col++;++tok_end;
+					capture_toks("eq");
+				}else{ capture_toks("assign"); }
+		    break;
+		  case '(': case ')': case '{': case '}': case '[': case ']': 
+			case '+': case '*': case '/': case '^': case '#': case ',':  
+			case '-': case '%': case '&': case '|': case ';':  
+				gm->col++; capture_toks("pun"); break;
 		  case '.':
 				gm->col++;
 		    if(*tok_end=='.'){
@@ -312,6 +330,26 @@ static int str_tokenize (lua_State *L) {
 }
 
 
+static int str_tokenize_savestate (lua_State *L) {
+	luaL_checktype(L, 1, LUA_TFUNCTION);
+  lua_getupvalue(L, 1, 3);
+  GTokenizeState *gm;
+  // lua_settop(L, 2);  /* keep them on closure to avoid being collected */
+	GTokenizeState *gm0 = (GTokenizeState *)lua_touserdata(L, -1);
+  gm = (GTokenizeState *)lua_newuserdata(L, sizeof(GTokenizeState));
+  *gm = *gm0;
+  // lua_pushcclosure(L, str_tokenize_aux, 3);
+  return 1;
+}
+
+static int str_tokenize_loadstate (lua_State *L) {
+	luaL_checktype(L, 1, LUA_TFUNCTION);
+  GTokenizeState *gm0 = (GTokenizeState *)lua_touserdata(L, 2);
+  lua_getupvalue(L, 1, 3);
+	GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, -1);
+  *gm = *gm0;
+  return 1;
+}
 
 
 static int str_upper (lua_State *L) {
@@ -495,6 +533,7 @@ static int match_class (int c, int cl) {
     case 'd' : res = isdigit(c); break;
     case 'g' : res = isgraph(c); break;
     case 'l' : res = islower(c); break;
+    case 'r' : res = islalcyr(c); break;
     case 'p' : res = ispunct(c); break;
     case 's' : res = isspace(c); break;
     case 'u' : res = isupper(c); break;
@@ -1787,6 +1826,8 @@ static const luaL_Reg strlib[] = {
   {"\xd0\xb4\xd0\xbb\xd0\xb8\xd0\xbd\xd0\xb0\xd0\xbf\xd0\xb0\xd0\xba", str_packsize},
   {"\xd1\x80\xd0\xb0\xd1\x81\xd0\xbf\xd0\xb0\xd0\xba\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd1\x8c", str_unpack},
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb5\xd0\xbd\xd0\xb8\xd0\xb7", str_tokenize},
+  {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb7\xd0\xb0\xd0\xbf\xd0\xbe\xd0\xbc\xd0\xbd\xd0\xb8\xd1\x82\xd1\x8c", str_tokenize_savestate},
+  {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb2\xd0\xb5\xd1\x80\xd0\xbd\xd1\x83\xd1\x82\xd1\x8c", str_tokenize_loadstate},
 
   {NULL, NULL}
 };
