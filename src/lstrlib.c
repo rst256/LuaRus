@@ -106,6 +106,214 @@ static int str_lower (lua_State *L) {
 }
 
 
+
+// #include "lprefix.h"
+
+
+// #include <locale.h>
+// #include <string.h>
+
+
+// #include "lctype.h"
+// #include <ctype.h>
+// 
+// #define lislalcyr(c)	( (c>=224 && c<=255) || (c>=192 && c<=223) || c==168 || c==184 || c==191 || c==181 || c==128 || c==176 || c==130  || c==140 || (c>=128 && c<=191) )
+// 
+// #define lislalpha(c)	( lislalcyr(c) || (isalpha(c) || (c) == '_') )
+// #define lislalnum(c)	( lislalcyr(c) || isalnum(c) || (c) == '_' )
+// #define lisdigit(c)	(isdigit(c))
+// #define lisspace(c)	(isspace(c))
+// #define lisprint(c)	(isprint(c))
+// #define lisxdigit(c)	(isxdigit(c))
+// 
+// #include <ctype.h>
+// #define isalpha1(c)	( (c>='a' && c<='z') || (c>='A' && c<='Z') ) 
+// #define isalnum1(c)	( (c>='a' && c<='z') || (c>='A' && c<='Z') || (c>='0' && c<='9') ) 
+// #define isdigit1(c)	(c>='0' && c<='9') 
+// #define isspace(c)	( c==' ' || c=='\t' || c=='\n' || c=='\r' ) 
+// #define isxdigit(c)	( (c>='a' && c<='f') || (c>='A' && c<='F') || (c>='0' && c<='9') ) 
+// 
+#define islalcyr(c)	( (c>=224 && c<=255) || (c>=192 && c<=223) || c==168 || c==184 || c==191 || c==181 || c==128 || c==176 || c==130  || c==140 || (c>=128 && c<=191) )
+
+#define islalpha(c)	( islalcyr(c) || (isalpha(c) || (c) == '_') )
+#define islalnum(c)	( islalcyr(c) || isalnum(c) || (c) == '_' )
+// #define lisdigit1(c)	(isdigit1(c))
+// #define lisspace(c)	(isspace(c))
+// // #define lisprint(c)	(isprint(c))
+// #define lisxdigit(c)	(isxdigit(c))
+
+#define match_toks(cond)	\
+	for(unsigned int c = *tok_end; tok_end <= src_end && (cond); c = *(++tok_end), gm->col++)
+
+
+#define capture_toks(lexeme)	{\
+	lua_pushliteral(L, lexeme);\
+	lua_pushlstring(L, (const char *)tok_start, tok_end-tok_start);\
+	int v;\
+	for(const char *u=gm->src_utf8; (u=utf8_decode(u, &v))<(const char *)tok_start; gm->idx_utf8++) gm->src_utf8=u;\
+	lua_pushinteger(L, gm->idx_utf8);\
+	for(const char *u=gm->src_utf8; (u=utf8_decode(u, &v))<(const char *)tok_end; gm->idx_utf8++) gm->src_utf8=u;\
+	lua_pushinteger(L, gm->idx_utf8);\
+	gm->src = (const char *)(tok_end);\
+	return 4;\
+}
+// #define check_toks(c)	 if(c!=*(++tok_end))
+	// printf("%8.8s: `%.*s`\n", lexeme, (src = tok_end-1, tok_end)-tok_start, tok_start);
+//(const char *)(tok_start)-gm->src_init);
+	// lua_pushinteger(L, (const char *)(tok_end)-gm->src_init);
+#define MAXUNICODE	0x10FFFF
+
+static const char *utf8_decode (const char *o, int *val) {
+  static const unsigned int limits[] = {0xFF, 0x7F, 0x7FF, 0xFFFF};
+  const unsigned char *s = (const unsigned char *)o;
+  unsigned int c = s[0];
+  unsigned int res = 0;  /* final result */
+  if (c < 0x80)  /* ascii? */
+    res = c;
+  else {
+    int count = 0;  /* to count number of continuation bytes */
+    while (c & 0x40) {  /* still have continuation bytes? */
+      int cc = s[++count];  /* read next byte */
+      if ((cc & 0xC0) != 0x80)  /* not a continuation byte? */
+        return NULL;  /* invalid byte sequence */
+      res = (res << 6) | (cc & 0x3F);  /* add lower 6 bits from cont. byte */
+      c <<= 1;  /* to test next bit */
+    }
+    res |= ((c & 0x7F) << (count * 5));  /* add first byte */
+    if (count > 3 || res > MAXUNICODE || res <= limits[count])
+      return NULL;  /* invalid byte sequence */
+    s += count;  /* skip continuation bytes read */
+  }
+  if (val) *val = res;
+  return (const char *)s + 1;  /* +1 to include first byte */
+}
+
+typedef struct GTokenizeState {
+  const char *src;  /* current position */
+  const char *src_utf8;  /* current position at last utf8 symbol start*/
+  int idx_utf8;  /* current utf8 symbol index */
+	int line; 
+	int col;
+  const char *p;  /* pattern */
+  const char *lastmatch;  /* end of last match */
+  lua_State *L;
+  const char *src_init;  /* init of source string */
+  const char *src_end;  /* end ('\0') of source string */
+  const char *p_end;  /* end ('\0') of pattern */
+} GTokenizeState;
+
+static int str_tokenize_aux (lua_State *L) {
+  GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, lua_upvalueindex(3));
+  const unsigned char *src, *src_end = (const unsigned char *)gm->src_end;
+	if(gm->src > gm->src_end) return 0;
+  unsigned int c;
+	gm->L = L;
+  for (src = (const unsigned char *)gm->src; src <= src_end; src++) {
+		const unsigned char *tok_start = src, *tok_end = tok_start+1;
+		switch(c = *src){
+		  case '"':{
+	    	// const unsigned char *tok_start = src, *tok_end;
+				int is_esc = 0;
+  luaL_Buffer _b, *b = &_b;
+  luaL_buffinit(L, b);
+				for(; tok_end <= src_end; tok_end++, gm->col++){
+					unsigned int c = *tok_end;
+					if(is_esc){
+						is_esc = 0;
+						switch(c){
+						  case '\\': case '\"':  case '\'': 
+								luaL_addchar(b, c); break;
+						  case 't': luaL_addchar(b, '\t'); break;
+						  case 'n': luaL_addchar(b, '\n'); break;
+						  case 'r': luaL_addchar(b, '\r'); break;				
+						  default: luaL_addchar(b, c); break;
+						}
+					}else if(c=='"'){
+					  break;
+					}else if(c=='\\'){
+						is_esc = 1;
+					}else{
+						luaL_addchar(b, c);			    
+					}
+				}
+				tok_end++;
+				capture_toks("str");
+// 		    printf("str: `%.*s`\n", tok_end-tok_start+1, tok_start);
+// 				src = tok_end;
+		    break; }
+		  case '.':
+				gm->col++;
+		    if(*tok_end=='.'){
+					gm->col++;
+					if(*(++tok_end)=='.'){ gm->col++; tok_end++; capture_toks("vararg"); }else{ capture_toks("concat"); }
+				}else{ capture_toks("point"); }
+		    break;
+		  case ' ': case '\t': case '\n': case '\r':{
+				// const unsigned char *tok_start = src, *tok_end;
+		    for(tok_end = src; tok_end <= src_end &&
+					(*tok_end==' ' || *tok_end=='\t' || *tok_end=='\n' || *tok_end=='\r'); tok_end++){
+					if(*tok_end=='\n'){ gm->line++; gm->col = 1; }else{ gm->col++; }
+				}
+				// printf("ws:  `%.*s`\n", tok_end-tok_start, tok_start);
+				// src = tok_end-1;
+				capture_toks("ws");
+		    }break;
+      case '0': case '1': case '2': case '3':
+      case '4': case '5': case '6': case '7':
+      case '8': case '9': {  /* capture results (%0-%9)? */
+				// const unsigned char *tok_start = src, *tok_end = tok_start+1;
+				for(unsigned int c = *tok_end; tok_end <= src_end && isdigit(c); c = *(++tok_end), gm->col++) ;
+				// printf("num: `%.*s`\n", tok_end-tok_start, tok_start);
+				// src = tok_end-1;
+				capture_toks("num");
+		 	  break;}
+		  default:
+		    if(islalpha(c)){
+					match_toks(islalnum(c));
+					capture_toks("id");
+				}else if(ispunct(c)){
+					match_toks(ispunct(c));
+					capture_toks("pun");
+				}else{
+					gm->col++;
+					capture_toks("unk");
+				}
+		    break;
+		}
+    // const char *e;
+    // reprepstate(&gm->ms);
+    // if ((e = match(&gm->ms, src, gm->p)) != NULL && e != gm->lastmatch) {
+    //   gm->src = gm->lastmatch = e;
+    //   return push_captures(&gm->ms, src, e);
+    // }
+  }
+  return 0;  /* not found */
+}
+
+
+static int str_tokenize (lua_State *L) {
+  size_t ls, lp;
+  const char *s = luaL_checklstring(L, 1, &ls);
+  const char *p = luaL_checklstring(L, 2, &lp);
+  GTokenizeState *gm;
+  lua_settop(L, 2);  /* keep them on closure to avoid being collected */
+  gm = (GTokenizeState *)lua_newuserdata(L, sizeof(GTokenizeState));
+  gm->src = s; gm->p = p; gm->lastmatch = NULL;
+  gm->L = L;
+  gm->src_init = s;
+  gm->src_utf8 = s;
+  gm->idx_utf8 = 0;
+  gm->line = 1;
+  gm->col = 1;
+	gm->src_end = s + ls;
+  gm->p_end = p + lp;
+  lua_pushcclosure(L, str_tokenize_aux, 3);
+  return 1;
+}
+
+
+
+
 static int str_upper (lua_State *L) {
   size_t l;
   size_t i;
@@ -1559,6 +1767,7 @@ static const luaL_Reg strlib[] = {
   {"pack", str_pack},
   {"packsize", str_packsize},
   {"unpack", str_unpack},
+  {"tokenize", str_tokenize},
 
   {"\xd0\xb1\xd0\xb0\xd0\xb9\xd1\x82", str_byte},
   {"\xd1\x81\xd0\xb8\xd0\xbc\xd0\xb2", str_char},
@@ -1577,6 +1786,7 @@ static const luaL_Reg strlib[] = {
   {"\xd1\x83\xd0\xbf\xd0\xb0\xd0\xba\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd1\x8c", str_pack},
   {"\xd0\xb4\xd0\xbb\xd0\xb8\xd0\xbd\xd0\xb0\xd0\xbf\xd0\xb0\xd0\xba", str_packsize},
   {"\xd1\x80\xd0\xb0\xd1\x81\xd0\xbf\xd0\xb0\xd0\xba\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd1\x8c", str_unpack},
+  {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb5\xd0\xbd\xd0\xb8\xd0\xb7", str_tokenize},
 
   {NULL, NULL}
 };

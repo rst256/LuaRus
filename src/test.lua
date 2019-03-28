@@ -7,7 +7,7 @@
 конец
 
 
-класс = [["класс" имя_класса:имя 
+класс = [[ "класс" имя_класса:имя 
 	":" ? базовые_классы:(имя*",") 
 	члены_класса:(блок определение_функции / определение_переменной )
 ]]
@@ -110,6 +110,33 @@
 -- 
 -- число=вв.ввод:читать('н')
 -- печать("число:", число)
+
+класс1 = [[класс "cnh" .	""x.. ddd44 яя22 5554"класс" ... --
+@macro1 (5, 8)]]
+print(класс1)
+итер_ток = класс1:токениз("")
+print(итер_ток)
+prev_s = nil
+for l,s,b,e in итер_ток do 
+	
+	if prev_s=='@' and l=='id' then
+		print('macros:', s) 
+		local lev = -1
+		local arg, args = '', {}
+		for l,s in итер_ток do
+			arg = arg .. s
+			if s=='(' then lev=lev+1;
+			elseif s==')' then if lev==0 then table.insert(args, arg); arg = ''; break; else lev=lev-1; end
+			elseif s==',' and lev==0 then table.insert(args, arg); arg = '';  
+			end
+		end
+
+печать(table.concat(args, ', '))
+
+	end
+	prev_s = s
+end
+ос.выход()
 
 файл = вв.построчно("test.lua1", "r")
 весьфайл=файл:читать('в')

@@ -159,11 +159,8 @@ void luaX_init (lua_State *L) {
   luaC_fix(L, obj2gco(e2));  /* never collect this name */
   e2 = luaS_newliteral(L, "\x5F\xD0\x9E\xD0\x9A\xD0\xA0");  /* create env name */
   luaC_fix(L, obj2gco(e2));  /* never collect this name */
-  // for (i=0; i<sizeof(luaX_tokens_cyr)/sizeof(luaX_tokens_cyr[i]); i++) {
-  //   TString *ts = luaS_new(L, luaX_tokens_cyr[i]);
-  //   luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */
-  //   ts->extra = cast_byte(i+1);  /* reserved word */
-  // }
+
+
   for (i=0; i<sizeof(luaX_tokens_cyr_utf8)/sizeof(luaX_tokens_cyr_utf8[i]); i++) {
     TString *ts = luaS_new(L, luaX_tokens_cyr_utf8[i]);
     luaC_fix(L, obj2gco(ts));  /* reserved words are never collected */

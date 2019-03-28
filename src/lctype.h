@@ -83,7 +83,7 @@ LUAI_DDEC const lu_byte luai_ctype_[UCHAR_MAX + 2];
 #include <ctype.h>
 
 #define lislalpha(c)	( lislalcyr(c) || (isalpha(c) || (c) == '_') )
-#define lislalnum(c)	( lislalcyr(c) || (isalnum(c) || (c) == '_') )
+#define lislalnum(c)	( lislalcyr(c) || isalpha(c) || isalnum(c) || (c) == '_' )
 #define lisdigit(c)	(isdigit(c))
 #define lisspace(c)	(isspace(c))
 #define lisprint(c)	(isprint(c))

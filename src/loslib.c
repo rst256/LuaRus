@@ -394,13 +394,22 @@ static const luaL_Reg syslib[] = {
   {"time",      os_time},
   {"tmpname",   os_tmpname},
 
-  {"выполнить",   os_execute},
-  {"переименовать",    os_rename},
-  {"удалить",    os_remove},
-  {"дата",      os_date},
-  {"время",      os_time},
-  {"выход",      os_exit},
-  {"устлокаль", os_setlocale},
+  // {"выполнить",   os_execute},
+  // {"переименовать",    os_rename},
+  // {"удалить",    os_remove},
+  // {"дата",      os_date},
+  // {"время",      os_time},
+  // {"выход",      os_exit},
+  // {"устлокаль", os_setlocale},
+
+  {"\xd0\xb2\xd1\x8b\xd0\xbf\xd0\xbe\xd0\xbb\xd0\xbd\xd0\xb8\xd1\x82\xd1\x8c",   os_execute},
+  {"\xd0\xbf\xd0\xb5\xd1\x80\xd0\xb5\xd0\xb8\xd0\xbc\xd0\xb5\xd0\xbd\xd0\xbe\xd0\xb2\xd0\xb0\xd1\x82\xd1\x8c",    os_rename},
+  {"\xd1\x83\xd0\xb4\xd0\xb0\xd0\xbb\xd0\xb8\xd1\x82\xd1\x8c",    os_remove},
+  {"\xd0\xb4\xd0\xb0\xd1\x82\xd0\xb0",      os_date},
+  {"\xd0\xb2\xd1\x80\xd0\xb5\xd0\xbc\xd1\x8f",      os_time},
+  {"\xd0\xb2\xd1\x8b\xd1\x85\xd0\xbe\xd0\xb4",      os_exit},
+  {"\xd1\x83\xd1\x81\xd1\x82\xd0\xbb\xd0\xbe\xd0\xba\xd0\xb0\xd0\xbb\xd1\x8c", os_setlocale},
+
   {NULL, NULL}
 };
 
