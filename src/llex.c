@@ -116,7 +116,7 @@ static const char *const luaX_tokens_cyr [] = {
 
 };
 static const char *const luaX_tokens_cyr_utf8 [] = {
-    "\xD0\xB8", "\xD1\x81\xD1\x82\xD0\xBE\xD0\xBF", "\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB0\xD0\xBB\xD0\xBE", "\xD0\xB8\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB5", "\xd0\xb8\xd0\xbd\xd0\xb0\xd1\x87\xd0\xb5\xd0\xb5\xd1\x81\xd0\xbb\xd0\xb8",
+    "\xD0\xB8", "\xD1\x81\xD1\x82\xD0\xBE\xD0\xBF", "\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB0\xD0\xBB\xD0\xBE", "\xD0\xB8\xD0\xBD\xD0\xB0\xD1\x87\xD0\xB5", "\xd0\xb8\xd0\xb5\xd1\x81\xd0\xbb\xd0\xb8",
 
     "\xD0\xBA\xD0\xBE\xD0\xBD\xD0\xB5\xD1\x86", "\xD0\xBB\xD0\xBE\xD0\xB6\xD1\x8C", "\xD0\xB4\xD0\xBB\xD1\x8F", "\xD1\x84\xD1\x83\xD0\xBD\xD0\xBA\xD1\x86\xD0\xB8\xD1\x8F", "\xd0\xb8\xd0\xb4\xd0\xb8\xd0\xbd\xd0\xb0", "\xD0\xB5\xD1\x81\xD0\xBB\xD0\xB8", 
 
@@ -250,7 +250,6 @@ static void inclinenumber (LexState *ls) {
     lexerror(ls, "chunk has too many lines", 0);
 }
 
-
 void luaX_setinput (lua_State *L, LexState *ls, ZIO *z, TString *source,
                     int firstchar) {
   ls->t.token = 0;
@@ -297,6 +296,67 @@ static int check_next2 (LexState *ls, const char *set) {
   else return 0;
 }
 
+// static int check_next4 (LexState *ls, const char *set) {
+//   lua_assert(set[4] == '\0');
+//   if (ls->current == set[0] || ls->current == set[1] || ls->current == set[2] || ls->current == set[3]) {
+//     save_and_next(ls);
+//     return 1;
+//   }
+//   else return 0;
+// }
+int zlookc(ZIO *z) {
+	if(z->n-1>0){
+		return (unsigned char)cast_uchar(*(z->p));
+	}else{
+	  size_t size;
+	  lua_State *L = z->L;
+	  const char *buff;
+	  lua_unlock(L);
+	  buff = z->reader(L, z->data, &size);
+	  lua_lock(L);
+	  if (buff == NULL || size == 0)
+	    return EOZ;
+	  z->n = size - 1;  /* discount char being returned */
+	  z->p = buff;
+	  return (unsigned char)cast_uchar(*(z->p));
+	}
+}
+
+
+static int check_next2cyr (LexState *ls, const char *set1) {
+  lua_assert(set1[5] == '\0');
+	const unsigned char *set = (const unsigned char *)set1;
+// printf("check_next2: 1 %lx %lx %lx\n", ls->previous, set[0] , set[0]);
+  if (ls->current == set[0] || ls->current == set[2]) {
+		int s = zlookc(ls->z);
+	  // next(ls);
+// printf("%s:%d: check_next2: 2 %lx %lx %lx\n", ls->source, ls->linenumber, s, set[1] , set[3]);
+		if (s == set[1] || s == set[3]) {
+			save(ls, set[4]);
+	    next(ls);
+	    next(ls);
+	    return 1;
+	  }
+		// else lexerror(ls, "malformed utf8 symbol", TK_FLT);
+  }
+  return 0;
+}
+
+static int lisxdigit_cyr (LexState *ls) {
+  if (ls->current != 0xd0) return 0;
+	int s = zlookc(ls->z);
+	if (s >= 0x90 && s <= 0x95) {
+		save(ls, 0x90-s+'a');
+    next(ls);
+    next(ls);
+    return 1;
+  }else if(s >= 0xb0 && s <= 0xb5){
+		save(ls, 0xb0-s+'a');
+    next(ls);
+    next(ls);
+    return 1;
+	}else return 0;
+}
 
 /* LUA_NUMBER */
 /*
@@ -306,19 +366,29 @@ static int check_next2 (LexState *ls, const char *set) {
 static int read_numeral (LexState *ls, SemInfo *seminfo) {
   TValue obj;
   const char *expo = "Ee";
+  const char *expo_cyr = "\xd0\xb5\xd0\x95\x65";
   int first = ls->current;
+  int ishex = 0;
   lua_assert(lisdigit(ls->current));
   save_and_next(ls);
-  if (first == '0' && check_next2(ls, "xX"))  /* hexadecimal? */
-    expo = "Pp";
+  if (first == '0' && (check_next2(ls, "xX") || check_next2cyr(ls, "\xd1\x88\xd0\xa8\x78"))){  /* hexadecimal? */
+    expo = "\xd0\xa0\xd1\x80\x70";
+		ishex = 1;
+	}
   for (;;) {
-    if (check_next2(ls, expo))  /* exponent part? */
+    if (check_next2(ls, expo) || check_next2cyr(ls, expo_cyr)){  /* exponent part? */
+			while(ls->current == ' ' || ls->current == '\t') next(ls);
       check_next2(ls, "-+");  /* optional exponent sign */
-    if (lisxdigit(ls->current))
+		}
+//     if (ls->current == ' ' || ls->current == '\t'){
+// 			next(ls);
+// 			continue;
+// 		}
+    if (ishex ? lisxdigit(ls->current) : lisdigit(ls->current))
       save_and_next(ls);
     else if (ls->current == '.')
       save_and_next(ls);
-    else break;
+    else if(!(ishex && lisxdigit_cyr(ls))) break;
   }
   save(ls, '\0');
   if (luaO_str2num(luaZ_buffer(ls->buff), &obj) == 0)  /* format error? */
@@ -470,6 +540,20 @@ static void read_string (LexState *ls, int del, SemInfo *seminfo) {
         int c;  /* final character to be saved */
         save_and_next(ls);  /* keep '\\' for error messages */
         switch (ls->current) {
+          case 0xd0:
+						switch (zlookc(ls->z)) {
+		          case 0xbd: next(ls); c = '\n'; goto read_save;
+		          case 0xb2: next(ls); c = '\r'; goto read_save;
+							default: lexerror(ls, "invalid escape sequence2", TK_STRING);break;
+						}
+						break;
+          case 0xd1: 
+						switch (zlookc(ls->z)) {
+		          case 0x81: next(ls); c = '\b'; goto read_save;
+		          case 0x82: next(ls); c = '\t'; goto read_save;
+							default: lexerror(ls, "invalid escape sequence3", TK_STRING);break;
+						}
+						break;
           case 'a': c = '\a'; goto read_save;
           case 'b': c = '\b'; goto read_save;
           case 'f': c = '\f'; goto read_save;

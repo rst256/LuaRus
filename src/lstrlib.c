@@ -143,8 +143,16 @@ static int str_lower (lua_State *L) {
 // #define lisxdigit(c)	(isxdigit(c))
 
 #define match_toks(cond)	\
-	for(unsigned int c = *tok_end; tok_end <= src_end && (cond); c = *(++tok_end), gm->col++)
+	for(unsigned int c = *tok_end; tok_end <= src_end && (cond); c = *(++tok_end), c!=0xd0 && c!=0xd1 ? gm->col++ : 0)
 
+
+#define oper1or2(op1name, op2char, op2name)	\
+	gm->col++;\
+  if(*tok_end==(op2char)){\
+		gm->col++;++tok_end;\
+		capture_toks(op2name);\
+	}else{ capture_toks(op1name); }\
+  break
 
 #define capture_toks(lexeme)	{\
 	lua_pushliteral(L, lexeme);\
@@ -157,6 +165,8 @@ static int str_lower (lua_State *L) {
 	gm->src = (const char *)(tok_end);\
 	return 4;\
 }
+
+
 // #define check_toks(c)	 if(c!=*(++tok_end))
 	// printf("%8.8s: `%.*s`\n", lexeme, (src = tok_end-1, tok_end)-tok_start, tok_start);
 //(const char *)(tok_start)-gm->src_init);
@@ -241,6 +251,7 @@ static int str_tokenize_aux (lua_State *L) {
 // 		    printf("str: `%.*s`\n", tok_end-tok_start+1, tok_start);
 // 				src = tok_end;
 		    break; }
+			case ':': oper1or2("method", ':', "label");
 			case '~': 
 				gm->col++;
 		    if(*tok_end=='='){
@@ -349,6 +360,15 @@ static int str_tokenize_loadstate (lua_State *L) {
 	GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, -1);
   *gm = *gm0;
   return 1;
+}
+
+static int str_tokenize_getpos (lua_State *L) {
+	luaL_checktype(L, 1, LUA_TFUNCTION);
+  lua_getupvalue(L, 1, 3);
+	GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, -1);
+	lua_pushinteger(L, gm->line);
+	lua_pushinteger(L, gm->col);
+  return 2;
 }
 
 
@@ -1828,6 +1848,7 @@ static const luaL_Reg strlib[] = {
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb5\xd0\xbd\xd0\xb8\xd0\xb7", str_tokenize},
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb7\xd0\xb0\xd0\xbf\xd0\xbe\xd0\xbc\xd0\xbd\xd0\xb8\xd1\x82\xd1\x8c", str_tokenize_savestate},
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb2\xd0\xb5\xd1\x80\xd0\xbd\xd1\x83\xd1\x82\xd1\x8c", str_tokenize_loadstate},
+  {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xbf\xd0\xbe\xd0\xb7\xd0\xb8\xd1\x86\xd0\xb8\xd1\x8f", str_tokenize_getpos},
 
   {NULL, NULL}
 };
