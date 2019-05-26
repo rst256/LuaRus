@@ -3,6 +3,19 @@
 локал ман = вв.открой([[c:\dev\luaRu5.3.4\lua-5.3.4\doc\manual.html]]):читай"*a"
 ман = ман:gsub('"contents%.html#', '"contents_ru.html#')
 
+локал словарь = [[
+type	тип
+if	
+then
+else
+elseif  
+end
+while 
+do
+return
+see
+]]
+
 локал функция найти_англ_аналог(фн, окр)
 	если фн==тип возврат "type" конец
 	для н, т из пар(окр или _ОКР) начало

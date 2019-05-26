@@ -6,614 +6,603 @@
 <LINK REL="stylesheet" TYPE="text/css" HREF="index.css">
 <META HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8">
 </HEAD>
+<body>
 
-<BODY>
+<h1>
+<a href="http://www.lua.org/"><img src="logo.gif" alt="Lua"></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Справочное руководство по Lua 5.3
+</font></font></h1>
 
-<H1>
-<A HREF="http://www.lua.org/"><IMG SRC="logo.gif" ALT="Lua"></A>
-Lua 5.3 Reference Manual
-</H1>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Справочное руководство является официальным определением языка Lua.
+</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Полное введение в программирование на Lua см. В книге «
+ </font></font><a href="http://www.lua.org/pil/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Программирование на Lua»</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .
 
-<P>
-The reference manual is the official definition of the Lua language.
-<BR>
-For a complete introduction to Lua programming, see the book
-<A HREF="http://www.lua.org/pil/">Programming in Lua</A>.
+</font></font></p><div class="menubar">
+<a href="manual.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">начало</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+·
+ </font></font><a href="#contents"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">содержание</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+·
+ </font></font><a href="#index"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">индекс</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
+·
+ </font></font><a href="http://www.lua.org/manual/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">другие версии</font></font></a>
+</div>
 
-<DIV CLASS="menubar">
-<A HREF="manual.html">start</A>
-&middot;
-<A HREF="#contents">contents</A>
-&middot;
-<A HREF="#index">index</A>
-&middot;
-<A HREF="http://www.lua.org/manual/">other versions</A>
-</DIV>
+<p>
+<small><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Copyright © 2015–2017 Lua.org, PUC-Rio. </font><font style="vertical-align: inherit;">Бесплатно доступно в соответствии с условиями
+ </font></font><a href="http://www.lua.org/license.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">лицензии Lua</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .
+</font></font></small>
 
-<P>
-<SMALL>
-Copyright &copy; 2015&ndash;2017 Lua.org, PUC-Rio.
-Freely available under the terms of the
-<A HREF="http://www.lua.org/license.html">Lua license</A>.
-</SMALL>
+</p><h2><a name="contents"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">содержание</font></font></a></h2>
+<ul class="contents menubar">
+<li><a href="manual.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1. Введение</font></font></a>
+<p>
+</p></li><li><a href="manual_ru.html#2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 - Основные понятия</font></font></a>
+<ul>
+<li><a href="manual_ru.html#2.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.1 - Значения и типы</font></font></a>
+</li><li><a href="manual_ru.html#2.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.2 - Окружающая среда и глобальная среда</font></font></a>
+</li><li><a href="manual_ru.html#2.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.3 - Обработка ошибок</font></font></a>
+</li><li><a href="manual_ru.html#2.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.4 - Метатаблицы и метаметоды</font></font></a>
+</li><li><a href="manual_ru.html#2.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.5 - Сборка мусора</font></font></a>
+<ul>
+<li><a href="manual_ru.html#2.5.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.5.1 - Метаметоды сбора мусора</font></font></a>
+</li><li><a href="manual_ru.html#2.5.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.5.2 - Слабые таблицы</font></font></a>
+</li></ul>
+</li><li><a href="manual_ru.html#2.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2.6 - сопрограммы</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3 - Язык</font></font></a>
+<ul>
+<li><a href="manual_ru.html#3.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.1 - Лексические соглашения</font></font></a>
+</li><li><a href="manual_ru.html#3.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.2 - Переменные</font></font></a>
+</li><li><a href="manual_ru.html#3.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3 - Заявления</font></font></a>
+<ul>
+<li><a href="manual_ru.html#3.3.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.1 - Блоки</font></font></a>
+</li><li><a href="manual_ru.html#3.3.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.2 - Куски</font></font></a>
+</li><li><a href="manual_ru.html#3.3.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.3 - Назначение</font></font></a>
+</li><li><a href="manual_ru.html#3.3.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.4 - Управляющие структуры</font></font></a>
+</li><li><a href="manual_ru.html#3.3.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.5 - Для заявления</font></font></a>
+</li><li><a href="manual_ru.html#3.3.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.6 - Вызовы функций как операторы</font></font></a>
+</li><li><a href="manual_ru.html#3.3.7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.3.7 - Локальные объявления</font></font></a>
+</li></ul>
+</li><li><a href="manual_ru.html#3.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4 - Выражения</font></font></a>
+<ul>
+<li><a href="manual_ru.html#3.4.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.1 - Арифметические операторы</font></font></a>
+</li><li><a href="manual_ru.html#3.4.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.2 - Битовые операторы</font></font></a>
+</li><li><a href="manual_ru.html#3.4.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.3 - Принуждения и преобразования</font></font></a>
+</li><li><a href="manual_ru.html#3.4.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.4 - Операторы отношений</font></font></a>
+</li><li><a href="manual_ru.html#3.4.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.5 - Логические операторы</font></font></a>
+</li><li><a href="manual_ru.html#3.4.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.6 - Конкатенация</font></font></a>
+</li><li><a href="manual_ru.html#3.4.7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.7 - Оператор длины</font></font></a>
+</li><li><a href="manual_ru.html#3.4.8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.8 - Приоритет</font></font></a>
+</li><li><a href="manual_ru.html#3.4.9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.9 - Конструкторы таблиц</font></font></a>
+</li><li><a href="manual_ru.html#3.4.10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.10 - Функциональные вызовы</font></font></a>
+</li><li><a href="manual_ru.html#3.4.11"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.4.11 - Определения функций</font></font></a>
+</li></ul>
+</li><li><a href="manual_ru.html#3.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.5 - Правила видимости</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4 - Интерфейс прикладной программы</font></font></a>
+<ul>
+<li><a href="manual_ru.html#4.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.1 - Стек</font></font></a>
+</li><li><a href="manual_ru.html#4.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.2 - Размер стека</font></font></a>
+</li><li><a href="manual_ru.html#4.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.3 - Действительные и приемлемые показатели</font></font></a>
+</li><li><a href="manual_ru.html#4.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.4 - Закрытие C</font></font></a>
+</li><li><a href="manual_ru.html#4.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.5 - Реестр</font></font></a>
+</li><li><a href="manual_ru.html#4.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.6 - Обработка ошибок в C</font></font></a>
+</li><li><a href="manual_ru.html#4.7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.7 - Обработка урожая в C</font></font></a>
+</li><li><a href="manual_ru.html#4.8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.8 - Функции и типы</font></font></a>
+</li><li><a href="manual_ru.html#4.9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.9 - Интерфейс отладки</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5 - Вспомогательная библиотека</font></font></a>
+<ul>
+<li><a href="manual_ru.html#5.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5.1 - Функции и типы</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6 - Стандартные библиотеки</font></font></a>
+<ul>
+<li><a href="manual_ru.html#6.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.1 - Основные функции</font></font></a>
+</li><li><a href="manual_ru.html#6.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.2 - Манипуляция сопрограммой</font></font></a>
+</li><li><a href="manual_ru.html#6.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.3 - Модули</font></font></a>
+</li><li><a href="manual_ru.html#6.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.4 - Манипулирование строками</font></font></a>
+<ul>
+<li><a href="manual_ru.html#6.4.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.4.1 - Шаблоны</font></font></a>
+</li><li><a href="manual_ru.html#6.4.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.4.2 - Форматирование строк для упаковки и распаковки</font></font></a>
+</li></ul>
+</li><li><a href="manual_ru.html#6.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.5 - Поддержка UTF-8</font></font></a>
+</li><li><a href="manual_ru.html#6.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.6 - Манипуляция за столом</font></font></a>
+</li><li><a href="manual_ru.html#6.7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.7 - Математические функции</font></font></a>
+</li><li><a href="manual_ru.html#6.8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.8 - Средства ввода и вывода</font></font></a>
+</li><li><a href="manual_ru.html#6.9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.9 - Возможности операционной системы</font></font></a>
+</li><li><a href="manual_ru.html#6.10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6.10 - Библиотека отладки</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7 - Lua Standalone</font></font></a>
+<p>
+</p></li><li><a href="manual_ru.html#8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8 - Несовместимость с предыдущей версией</font></font></a>
+<ul>
+<li><a href="manual_ru.html#8.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8.1 - Изменения в языке</font></font></a>
+</li><li><a href="manual_ru.html#8.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8.2 - Изменения в библиотеках</font></font></a>
+</li><li><a href="manual_ru.html#8.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">8.3 - Изменения в API</font></font></a>
+</li></ul>
+<p>
+</p></li><li><a href="manual_ru.html#9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 - Полный синтаксис Lua</font></font></a>
+</li></ul>
 
-<H2><A NAME="contents">Contents</A></H2>
-<UL CLASS="contents menubar">
-<LI><A HREF="manual.html">1 &ndash; Introduction</A>
-<P>
-<LI><A HREF="manual_ru.html#2">2 &ndash; Basic Concepts</A>
-<UL>
-<LI><A HREF="manual_ru.html#2.1">2.1 &ndash; Values and Types</A>
-<LI><A HREF="manual_ru.html#2.2">2.2 &ndash; Environments and the Global Environment</A>
-<LI><A HREF="manual_ru.html#2.3">2.3 &ndash; Error Handling</A>
-<LI><A HREF="manual_ru.html#2.4">2.4 &ndash; Metatables and Metamethods</A>
-<LI><A HREF="manual_ru.html#2.5">2.5 &ndash; Garbage Collection</A>
-<UL>
-<LI><A HREF="manual_ru.html#2.5.1">2.5.1 &ndash; Garbage-Collection Metamethods</A>
-<LI><A HREF="manual_ru.html#2.5.2">2.5.2 &ndash; Weak Tables</A>
-</UL>
-<LI><A HREF="manual_ru.html#2.6">2.6 &ndash; Coroutines</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#3">3 &ndash; The Language</A>
-<UL>
-<LI><A HREF="manual_ru.html#3.1">3.1 &ndash; Lexical Conventions</A>
-<LI><A HREF="manual_ru.html#3.2">3.2 &ndash; Variables</A>
-<LI><A HREF="manual_ru.html#3.3">3.3 &ndash; Statements</A>
-<UL>
-<LI><A HREF="manual_ru.html#3.3.1">3.3.1 &ndash; Blocks</A>
-<LI><A HREF="manual_ru.html#3.3.2">3.3.2 &ndash; Chunks</A>
-<LI><A HREF="manual_ru.html#3.3.3">3.3.3 &ndash; Assignment</A>
-<LI><A HREF="manual_ru.html#3.3.4">3.3.4 &ndash; Control Structures</A>
-<LI><A HREF="manual_ru.html#3.3.5">3.3.5 &ndash; For Statement</A>
-<LI><A HREF="manual_ru.html#3.3.6">3.3.6 &ndash; Function Calls as Statements</A>
-<LI><A HREF="manual_ru.html#3.3.7">3.3.7 &ndash; Local Declarations</A>
-</UL>
-<LI><A HREF="manual_ru.html#3.4">3.4 &ndash; Expressions</A>
-<UL>
-<LI><A HREF="manual_ru.html#3.4.1">3.4.1 &ndash; Arithmetic Operators</A>
-<LI><A HREF="manual_ru.html#3.4.2">3.4.2 &ndash; Bitwise Operators</A>
-<LI><A HREF="manual_ru.html#3.4.3">3.4.3 &ndash; Coercions and Conversions</A>
-<LI><A HREF="manual_ru.html#3.4.4">3.4.4 &ndash; Relational Operators</A>
-<LI><A HREF="manual_ru.html#3.4.5">3.4.5 &ndash; Logical Operators</A>
-<LI><A HREF="manual_ru.html#3.4.6">3.4.6 &ndash; Concatenation</A>
-<LI><A HREF="manual_ru.html#3.4.7">3.4.7 &ndash; The Length Operator</A>
-<LI><A HREF="manual_ru.html#3.4.8">3.4.8 &ndash; Precedence</A>
-<LI><A HREF="manual_ru.html#3.4.9">3.4.9 &ndash; Table Constructors</A>
-<LI><A HREF="manual_ru.html#3.4.10">3.4.10 &ndash; Function Calls</A>
-<LI><A HREF="manual_ru.html#3.4.11">3.4.11 &ndash; Function Definitions</A>
-</UL>
-<LI><A HREF="manual_ru.html#3.5">3.5 &ndash; Visibility Rules</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#4">4 &ndash; The Application Program Interface</A>
-<UL>
-<LI><A HREF="manual_ru.html#4.1">4.1 &ndash; The Stack</A>
-<LI><A HREF="manual_ru.html#4.2">4.2 &ndash; Stack Size</A>
-<LI><A HREF="manual_ru.html#4.3">4.3 &ndash; Valid and Acceptable Indices</A>
-<LI><A HREF="manual_ru.html#4.4">4.4 &ndash; C Closures</A>
-<LI><A HREF="manual_ru.html#4.5">4.5 &ndash; Registry</A>
-<LI><A HREF="manual_ru.html#4.6">4.6 &ndash; Error Handling in C</A>
-<LI><A HREF="manual_ru.html#4.7">4.7 &ndash; Handling Yields in C</A>
-<LI><A HREF="manual_ru.html#4.8">4.8 &ndash; Functions and Types</A>
-<LI><A HREF="manual_ru.html#4.9">4.9 &ndash; The Debug Interface</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#5">5 &ndash; The Auxiliary Library</A>
-<UL>
-<LI><A HREF="manual_ru.html#5.1">5.1 &ndash; Functions and Types</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#6">6 &ndash; Standard Libraries</A>
-<UL>
-<LI><A HREF="manual_ru.html#6.1">6.1 &ndash; Basic Functions</A>
-<LI><A HREF="manual_ru.html#6.2">6.2 &ndash; Coroutine Manipulation</A>
-<LI><A HREF="manual_ru.html#6.3">6.3 &ndash; Modules</A>
-<LI><A HREF="manual_ru.html#6.4">6.4 &ndash; String Manipulation</A>
-<UL>
-<LI><A HREF="manual_ru.html#6.4.1">6.4.1 &ndash; Patterns</A>
-<LI><A HREF="manual_ru.html#6.4.2">6.4.2 &ndash; Format Strings for Pack and Unpack</A>
-</UL>
-<LI><A HREF="manual_ru.html#6.5">6.5 &ndash; UTF-8 Support</A>
-<LI><A HREF="manual_ru.html#6.6">6.6 &ndash; Table Manipulation</A>
-<LI><A HREF="manual_ru.html#6.7">6.7 &ndash; Mathematical Functions</A>
-<LI><A HREF="manual_ru.html#6.8">6.8 &ndash; Input and Output Facilities</A>
-<LI><A HREF="manual_ru.html#6.9">6.9 &ndash; Operating System Facilities</A>
-<LI><A HREF="manual_ru.html#6.10">6.10 &ndash; The Debug Library</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#7">7 &ndash; Lua Standalone</A>
-<P>
-<LI><A HREF="manual_ru.html#8">8 &ndash; Incompatibilities with the Previous Version</A>
-<UL>
-<LI><A HREF="manual_ru.html#8.1">8.1 &ndash; Changes in the Language</A>
-<LI><A HREF="manual_ru.html#8.2">8.2 &ndash; Changes in the Libraries</A>
-<LI><A HREF="manual_ru.html#8.3">8.3 &ndash; Changes in the API</A>
-</UL>
-<P>
-<LI><A HREF="manual_ru.html#9">9 &ndash; The Complete Syntax of Lua</A>
-</UL>
+<h2><a name="index"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Индекс</font></font></a></h2>
+<table class="menubar" width="100%">
+<tbody><tr>
+<td>
+<h3><a name="functions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lua функции</font></font></a></h3>
+<p>
+<a href="manual_ru.html#6.1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Основная </font></font></a><br>
+<a href="manual_ru.html#pdf-_G"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">_G </font></font></a><br>
+<a href="manual_ru.html#pdf-_VERSION"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">_VERSION </font></font></a><br>
+<a href="manual_ru.html#pdf-assert"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">утв </font></font></a><br>
+<a href="manual_ru.html#pdf-collectgarbage"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">собратьмусор </font></font></a><br>
+<a href="manual_ru.html#pdf-dofile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">испфайл </font></font></a><br>
+<a href="manual_ru.html#pdf-error"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ощибка </font></font></a><br>
+<a href="manual_ru.html#pdf-getmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">дайметатаб </font></font></a><br>
+<a href="manual_ru.html#pdf-ipairs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">перечислите </font></font></a><br>
+<a href="manual_ru.html#pdf-load"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Загрузить </font></font></a><br>
+<a href="manual_ru.html#pdf-loadfile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">загрузитьфайл </font></font></a><br>
+<a href="manual_ru.html#pdf-next"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следующего </font></font></a><br>
+<a href="manual_ru.html#pdf-pairs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">пар </font></font></a><br>
+<a href="manual_ru.html#pdf-pcall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">рвызы </font></font></a><br>
+<a href="manual_ru.html#pdf-print"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">печать </font></font></a><br>
+<a href="manual_ru.html#pdf-rawequal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сравнитьнапрямую </font></font></a><br>
+<a href="manual_ru.html#pdf-rawget"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">взятьнапрямую </font></font></a><br>
+<a href="manual_ru.html#pdf-rawlen"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">длинанапрямую </font></font></a><br>
+<a href="manual_ru.html#pdf-rawset"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сыраяуст </font></font></a><br>
+<a href="manual_ru.html#pdf-require"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">требует </font></font></a><br>
+<a href="manual_ru.html#pdf-select"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">выбор </font></font></a><br>
+<a href="manual_ru.html#pdf-setmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">устметатаб </font></font></a><br>
+<a href="manual_ru.html#pdf-tonumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">числовых </font></font></a><br>
+<a href="manual_ru.html#pdf-tostring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строковой </font></font></a><br>
+<a href="manual_ru.html#pdf-type"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">типа </font></font></a><br>
+<a href="manual_ru.html#pdf-xpcall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">хрвызы</font></font></a><br>
 
-<H2><A NAME="index">Index</A></H2>
-<TABLE CLASS="menubar" WIDTH="100%">
-<TR>
-<TD>
-<H3><A NAME="functions">Lua functions</A></H3>
-<P>
-<A HREF="manual_ru.html#6.1">basic</A><BR>
-<A HREF="manual_ru.html#pdf-_G">_G</A><BR>
-<A HREF="manual_ru.html#pdf-_VERSION">_VERSION</A><BR>
-<A HREF="manual_ru.html#pdf-assert">утв</A><BR>
-<A HREF="manual_ru.html#pdf-collectgarbage">собратьмусор</A><BR>
-<A HREF="manual_ru.html#pdf-dofile">испфайл</A><BR>
-<A HREF="manual_ru.html#pdf-error">ощибка</A><BR>
-<A HREF="manual_ru.html#pdf-getmetatable">дайметатаб</A><BR>
-<A HREF="manual_ru.html#pdf-ipairs">перечисли</A><BR>
-<A HREF="manual_ru.html#pdf-load">загрузить</A><BR>
-<A HREF="manual_ru.html#pdf-loadfile">загрузитьфайл</A><BR>
-<A HREF="manual_ru.html#pdf-next">следующий</A><BR>
-<A HREF="manual_ru.html#pdf-pairs">пар</A><BR>
-<A HREF="manual_ru.html#pdf-pcall">рвызов</A><BR>
-<A HREF="manual_ru.html#pdf-print">печать</A><BR>
-<A HREF="manual_ru.html#pdf-rawequal">сравнитьнапрямую</A><BR>
-<A HREF="manual_ru.html#pdf-rawget">взятьнапрямую</A><BR>
-<A HREF="manual_ru.html#pdf-rawlen">длинанапрямую</A><BR>
-<A HREF="manual_ru.html#pdf-rawset">сыраяуст</A><BR>
-<A HREF="manual_ru.html#pdf-require">require</A><BR>
-<A HREF="manual_ru.html#pdf-select">выбор</A><BR>
-<A HREF="manual_ru.html#pdf-setmetatable">устметатаб</A><BR>
-<A HREF="manual_ru.html#pdf-tonumber">числовой</A><BR>
-<A HREF="manual_ru.html#pdf-tostring">строковой</A><BR>
-<A HREF="manual_ru.html#pdf-type">тип</A><BR>
-<A HREF="manual_ru.html#pdf-xpcall">хрвызов</A><BR>
+</p><p>
+<a href="manual_ru.html#6.2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.create"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.создать </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.isyieldable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.издаваемые </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.resume"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.продолжить </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.running"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.запущен </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.status"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.статус </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.wrap"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.обернуть </font></font></a><br>
+<a href="manual_ru.html#pdf-coroutine.yield"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сопрограммы.передать</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.2">сопрограммы</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.create">сопрограммы.создать</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.isyieldable">сопрограммы.isyieldable</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.resume">сопрограммы.продолжить</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.running">сопрограммы.запущен</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.status">сопрограммы.статус</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.wrap">сопрограммы.обернуть</A><BR>
-<A HREF="manual_ru.html#pdf-coroutine.yield">сопрограммы.передать</A><BR>
+</p><p>
+<a href="manual_ru.html#6.10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.debug"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.отладка </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.gethook"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.хук </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.инфо </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getlocal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.дайлокал </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.метатаб </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getregistry"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.регистр </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getupvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.getupvalue </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.getuservalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.getuservalue </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.sethook"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.устхук </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.setlocal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.устлокал </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.setmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.устметатаб </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.setupvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.устзнач </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.setuservalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.setuservalue </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.traceback"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.трассировка </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.upvalueid"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.upvalueid </font></font></a><br>
+<a href="manual_ru.html#pdf-debug.upvaluejoin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отладка.upvaluejoin</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.10">отладка</A><BR>
-<A HREF="manual_ru.html#pdf-debug.debug">отладка.отладка</A><BR>
-<A HREF="manual_ru.html#pdf-debug.gethook">отладка.хук</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getinfo">отладка.инфо</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getlocal">отладка.дайлокал</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getmetatable">отладка.метатаб</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getregistry">отладка.регистр</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getupvalue">отладка.getupvalue</A><BR>
-<A HREF="manual_ru.html#pdf-debug.getuservalue">отладка.getuservalue</A><BR>
-<A HREF="manual_ru.html#pdf-debug.sethook">отладка.устхук</A><BR>
-<A HREF="manual_ru.html#pdf-debug.setlocal">отладка.устлокал</A><BR>
-<A HREF="manual_ru.html#pdf-debug.setmetatable">отладка.устметатаб</A><BR>
-<A HREF="manual_ru.html#pdf-debug.setupvalue">отладка.устзнач</A><BR>
-<A HREF="manual_ru.html#pdf-debug.setuservalue">отладка.setuservalue</A><BR>
-<A HREF="manual_ru.html#pdf-debug.traceback">отладка.трассировка</A><BR>
-<A HREF="manual_ru.html#pdf-debug.upvalueid">отладка.upvalueid</A><BR>
-<A HREF="manual_ru.html#pdf-debug.upvaluejoin">отладка.upvaluejoin</A><BR>
+</p><p>
+<a href="manual_ru.html#6.8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв </font></font></a><br>
+<a href="manual_ru.html#pdf-io.close"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.закрой </font></font></a><br>
+<a href="manual_ru.html#pdf-io.flush"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.сброс </font></font></a><br>
+<a href="manual_ru.html#pdf-io.input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.input </font></font></a><br>
+<a href="manual_ru.html#pdf-io.lines"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.построчно </font></font></a><br>
+<a href="manual_ru.html#pdf-io.open"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.открой </font></font></a><br>
+<a href="manual_ru.html#pdf-io.output"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.output </font></font></a><br>
+<a href="manual_ru.html#pdf-io.popen"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.popen </font></font></a><br>
+<a href="manual_ru.html#pdf-io.read"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.читай </font></font></a><br>
+<a href="manual_ru.html#pdf-io.stderr"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.stderr </font></font></a><br>
+<a href="manual_ru.html#pdf-io.stdin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.stdin </font></font></a><br>
+<a href="manual_ru.html#pdf-io.stdout"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.stdout </font></font></a><br>
+<a href="manual_ru.html#pdf-io.tmpfile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.tmpfile </font></font></a><br>
+<a href="manual_ru.html#pdf-io.type"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.type </font></font></a><br>
+<a href="manual_ru.html#pdf-io.write"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вв.пиши </font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.8">вв</A><BR>
-<A HREF="manual_ru.html#pdf-io.close">вв.закрой</A><BR>
-<A HREF="manual_ru.html#pdf-io.flush">вв.сброс</A><BR>
-<A HREF="manual_ru.html#pdf-io.input">вв.input</A><BR>
-<A HREF="manual_ru.html#pdf-io.lines">вв.построчно</A><BR>
-<A HREF="manual_ru.html#pdf-io.open">вв.открой</A><BR>
-<A HREF="manual_ru.html#pdf-io.output">вв.output</A><BR>
-<A HREF="manual_ru.html#pdf-io.popen">вв.popen</A><BR>
-<A HREF="manual_ru.html#pdf-io.read">вв.читай</A><BR>
-<A HREF="manual_ru.html#pdf-io.stderr">вв.stderr</A><BR>
-<A HREF="manual_ru.html#pdf-io.stdin">вв.stdin</A><BR>
-<A HREF="manual_ru.html#pdf-io.stdout">вв.stdout</A><BR>
-<A HREF="manual_ru.html#pdf-io.tmpfile">вв.tmpfile</A><BR>
-<A HREF="manual_ru.html#pdf-io.type">вв.type</A><BR>
-<A HREF="manual_ru.html#pdf-io.write">вв.пиши</A><BR>
+<a href="manual_ru.html#pdf-file:close"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл: закрыть </font></font></a><br>
+<a href="manual_ru.html#pdf-file:flush"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл: флеш - </font></font></a><br>
+<a href="manual_ru.html#pdf-file:lines"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл : </font></font></a><br>
+<a href="manual_ru.html#pdf-file:read"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл </font></font></a><font style="vertical-align: inherit;"><a href="manual_ru.html#pdf-file:lines"><font style="vertical-align: inherit;">строк </font></a><a href="manual_ru.html#pdf-file:read"><font style="vertical-align: inherit;">: чтение </font></a></font><br>
+<a href="manual_ru.html#pdf-file:seek"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файла: поиск </font></font></a><br>
+<a href="manual_ru.html#pdf-file:setvbuf"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файла: setvbuf </font></font></a><br>
+<a href="manual_ru.html#pdf-file:write"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл: запись</font></font></a><br>
 
-<A HREF="manual_ru.html#pdf-file:close">file:close</A><BR>
-<A HREF="manual_ru.html#pdf-file:flush">file:flush</A><BR>
-<A HREF="manual_ru.html#pdf-file:lines">file:lines</A><BR>
-<A HREF="manual_ru.html#pdf-file:read">file:read</A><BR>
-<A HREF="manual_ru.html#pdf-file:seek">file:seek</A><BR>
-<A HREF="manual_ru.html#pdf-file:setvbuf">file:setvbuf</A><BR>
-<A HREF="manual_ru.html#pdf-file:write">file:write</A><BR>
+</p></td>
+<td>
+<h3>&nbsp;</h3>
+<p>
+<a href="manual_ru.html#6.7"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат </font></font></a><br>
+<a href="manual_ru.html#pdf-math.abs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.абс </font></font></a><br>
+<a href="manual_ru.html#pdf-math.acos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.акос </font></font></a><br>
+<a href="manual_ru.html#pdf-math.asin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.асин </font></font></a><br>
+<a href="manual_ru.html#pdf-math.atan"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.атан </font></font></a><br>
+<a href="manual_ru.html#pdf-math.ceil"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.ceil </font></font></a><br>
+<a href="manual_ru.html#pdf-math.cos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.кос </font></font></a><br>
+<a href="manual_ru.html#pdf-math.deg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.дег </font></font></a><br>
+<a href="manual_ru.html#pdf-math.exp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.эксп </font></font></a><br>
+<a href="manual_ru.html#pdf-math.floor"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.floor </font></font></a><br>
+<a href="manual_ru.html#pdf-math.fmod"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.fmod </font></font></a><br>
+<a href="manual_ru.html#pdf-math.huge"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.бескон </font></font></a><br>
+<a href="manual_ru.html#pdf-math.log"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.log </font></font></a><br>
+<a href="manual_ru.html#pdf-math.max"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.max </font></font></a><br>
+<a href="manual_ru.html#pdf-math.maxinteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.наибцел </font></font></a><br>
+<a href="manual_ru.html#pdf-math.min"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.мин </font></font></a><br>
+<a href="manual_ru.html#pdf-math.mininteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.наимцел </font></font></a><br>
+<a href="manual_ru.html#pdf-math.modf"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат .modf </font></font></a><br>
+<a href="manual_ru.html#pdf-math.pi"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.пи </font></font></a><br>
+<a href="manual_ru.html#pdf-math.rad"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.rad </font></font></a><br>
+<a href="manual_ru.html#pdf-math.random"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.random </font></font></a><br>
+<a href="manual_ru.html#pdf-math.randomseed"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.randomseed </font></font></a><br>
+<a href="manual_ru.html#pdf-math.sin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.sin </font></font></a><br>
+<a href="manual_ru.html#pdf-math.sqrt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.sqrt </font></font></a><br>
+<a href="manual_ru.html#pdf-math.tan"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.tan </font></font></a><br>
+<a href="manual_ru.html#pdf-math.tointeger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.вцелое </font></font></a><br>
+<a href="manual_ru.html#pdf-math.type"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.type </font></font></a><br>
+<a href="manual_ru.html#pdf-math.ult"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мат.ult</font></font></a><br>
 
-</TD>
-<TD>
-<H3>&nbsp;</H3>
-<P>
-<A HREF="manual_ru.html#6.7">мат</A><BR>
-<A HREF="manual_ru.html#pdf-math.abs">мат.абс</A><BR>
-<A HREF="manual_ru.html#pdf-math.acos">мат.акос</A><BR>
-<A HREF="manual_ru.html#pdf-math.asin">мат.асин</A><BR>
-<A HREF="manual_ru.html#pdf-math.atan">мат.атан</A><BR>
-<A HREF="manual_ru.html#pdf-math.ceil">мат.ceil</A><BR>
-<A HREF="manual_ru.html#pdf-math.cos">мат.кос</A><BR>
-<A HREF="manual_ru.html#pdf-math.deg">мат.deg</A><BR>
-<A HREF="manual_ru.html#pdf-math.exp">мат.експ</A><BR>
-<A HREF="manual_ru.html#pdf-math.floor">мат.floor</A><BR>
-<A HREF="manual_ru.html#pdf-math.fmod">мат.fmod</A><BR>
-<A HREF="manual_ru.html#pdf-math.huge">мат.бескон</A><BR>
-<A HREF="manual_ru.html#pdf-math.log">мат.log</A><BR>
-<A HREF="manual_ru.html#pdf-math.max">мат.max</A><BR>
-<A HREF="manual_ru.html#pdf-math.maxinteger">мат.наибцел</A><BR>
-<A HREF="manual_ru.html#pdf-math.min">мат.min</A><BR>
-<A HREF="manual_ru.html#pdf-math.mininteger">мат.наимцел</A><BR>
-<A HREF="manual_ru.html#pdf-math.modf">мат.modf</A><BR>
-<A HREF="manual_ru.html#pdf-math.pi">мат.пи</A><BR>
-<A HREF="manual_ru.html#pdf-math.rad">мат.rad</A><BR>
-<A HREF="manual_ru.html#pdf-math.random">мат.random</A><BR>
-<A HREF="manual_ru.html#pdf-math.randomseed">мат.randomseed</A><BR>
-<A HREF="manual_ru.html#pdf-math.sin">мат.sin</A><BR>
-<A HREF="manual_ru.html#pdf-math.sqrt">мат.sqrt</A><BR>
-<A HREF="manual_ru.html#pdf-math.tan">мат.tan</A><BR>
-<A HREF="manual_ru.html#pdf-math.tointeger">мат.вцелое</A><BR>
-<A HREF="manual_ru.html#pdf-math.type">мат.type</A><BR>
-<A HREF="manual_ru.html#pdf-math.ult">мат.ult</A><BR>
+</p><p>
+<a href="manual_ru.html#6.9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос </font></font></a><br>
+<a href="manual_ru.html#pdf-os.clock"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.clock </font></font></a><br>
+<a href="manual_ru.html#pdf-os.date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.дата </font></font></a><br>
+<a href="manual_ru.html#pdf-os.difftime"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.difftime </font></font></a><br>
+<a href="manual_ru.html#pdf-os.execute"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.выполнить </font></font></a><br>
+<a href="manual_ru.html#pdf-os.exit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.выход </font></font></a><br>
+<a href="manual_ru.html#pdf-os.getenv"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.getenv </font></font></a><br>
+<a href="manual_ru.html#pdf-os.remove"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.у </font></font></a><br>
+<a href="manual_ru.html#pdf-os.rename"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">отображается </font></font></a><br>
+<a href="manual_ru.html#pdf-os.setlocale"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.переименовать </font></font></a><br>
+<a href="manual_ru.html#pdf-os.time"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.устлокаль </font></font></a><br>
+<a href="manual_ru.html#pdf-os.tmpname"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ос.время ос.tmpname</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.9">ос</A><BR>
-<A HREF="manual_ru.html#pdf-os.clock">ос.clock</A><BR>
-<A HREF="manual_ru.html#pdf-os.date">ос.дата</A><BR>
-<A HREF="manual_ru.html#pdf-os.difftime">ос.difftime</A><BR>
-<A HREF="manual_ru.html#pdf-os.execute">ос.выполнить</A><BR>
-<A HREF="manual_ru.html#pdf-os.exit">ос.выход</A><BR>
-<A HREF="manual_ru.html#pdf-os.getenv">ос.getenv</A><BR>
-<A HREF="manual_ru.html#pdf-os.remove">ос.удалить</A><BR>
-<A HREF="manual_ru.html#pdf-os.rename">ос.переименовать</A><BR>
-<A HREF="manual_ru.html#pdf-os.setlocale">ос.устлокаль</A><BR>
-<A HREF="manual_ru.html#pdf-os.time">ос.время</A><BR>
-<A HREF="manual_ru.html#pdf-os.tmpname">ос.tmpname</A><BR>
+</p><p>
+<a href="manual_ru.html#6.3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули </font></font></a><br>
+<a href="manual_ru.html#pdf-package.config"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.config </font></font></a><br>
+<a href="manual_ru.html#pdf-package.cpath"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.cpath </font></font></a><br>
+<a href="manual_ru.html#pdf-package.loaded"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.loaded </font></font></a><br>
+<a href="manual_ru.html#pdf-package.loadlib"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.загрузить </font></font></a><br>
+<a href="manual_ru.html#pdf-package.path"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.path </font></font></a><br>
+<a href="manual_ru.html#pdf-package.preload"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.preload </font></font></a><br>
+<a href="manual_ru.html#pdf-package.searchers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.searchers </font></font></a><br>
+<a href="manual_ru.html#pdf-package.searchpath"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модули.найтипуть</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.3">модули</A><BR>
-<A HREF="manual_ru.html#pdf-package.config">модули.config</A><BR>
-<A HREF="manual_ru.html#pdf-package.cpath">модули.cpath</A><BR>
-<A HREF="manual_ru.html#pdf-package.loaded">модули.loaded</A><BR>
-<A HREF="manual_ru.html#pdf-package.loadlib">модули.загрузить</A><BR>
-<A HREF="manual_ru.html#pdf-package.path">модули.path</A><BR>
-<A HREF="manual_ru.html#pdf-package.preload">модули.preload</A><BR>
-<A HREF="manual_ru.html#pdf-package.searchers">модули.searchers</A><BR>
-<A HREF="manual_ru.html#pdf-package.searchpath">модули.найтипуть</A><BR>
+</p><p>
+<a href="manual_ru.html#6.4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка </font></font></a><br>
+<a href="manual_ru.html#pdf-string.byte"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.байт </font></font></a><br>
+<a href="manual_ru.html#pdf-string.char"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.си </font></font></a><br>
+<a href="manual_ru.html#pdf-string.dump"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.дампы </font></font></a><br>
+<a href="manual_ru.html#pdf-string.find"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.найти </font></font></a><br>
+<a href="manual_ru.html#pdf-string.format"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.форматый </font></font></a><br>
+<a href="manual_ru.html#pdf-string.gmatch"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.иразбор </font></font></a><br>
+<a href="manual_ru.html#pdf-string.gsub"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.заменить </font></font></a><br>
+<a href="manual_ru.html#pdf-string.len"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.длин </font></font></a><br>
+<a href="manual_ru.html#pdf-string.lower"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.прописный </font></font></a><br>
+<a href="manual_ru.html#pdf-string.match"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.разбор </font></font></a><br>
+<a href="manual_ru.html#pdf-string.pack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.упаковать </font></font></a><br>
+<a href="manual_ru.html#pdf-string.packsize"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.длинапак </font></font></a><br>
+<a href="manual_ru.html#pdf-string.rep"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.повторить </font></font></a><br>
+<a href="manual_ru.html#pdf-string.reverse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.перевернуть </font></font></a><br>
+<a href="manual_ru.html#pdf-string.sub"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.подстр </font></font></a><br>
+<a href="manual_ru.html#pdf-string.unpack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строка.распаковать </font></font></a><br>
+<a href="manual_ru.html#pdf-string.upper"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">строку .строчные</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.4">строка</A><BR>
-<A HREF="manual_ru.html#pdf-string.byte">строка.байт</A><BR>
-<A HREF="manual_ru.html#pdf-string.char">строка.симв</A><BR>
-<A HREF="manual_ru.html#pdf-string.dump">строка.дамп</A><BR>
-<A HREF="manual_ru.html#pdf-string.find">строка.найти</A><BR>
-<A HREF="manual_ru.html#pdf-string.format">строка.формат</A><BR>
-<A HREF="manual_ru.html#pdf-string.gmatch">строка.иразбор</A><BR>
-<A HREF="manual_ru.html#pdf-string.gsub">строка.заменить</A><BR>
-<A HREF="manual_ru.html#pdf-string.len">строка.длина</A><BR>
-<A HREF="manual_ru.html#pdf-string.lower">строка.прописные</A><BR>
-<A HREF="manual_ru.html#pdf-string.match">строка.разбор</A><BR>
-<A HREF="manual_ru.html#pdf-string.pack">строка.упаковать</A><BR>
-<A HREF="manual_ru.html#pdf-string.packsize">строка.длинапак</A><BR>
-<A HREF="manual_ru.html#pdf-string.rep">строка.повторить</A><BR>
-<A HREF="manual_ru.html#pdf-string.reverse">строка.перевернуть</A><BR>
-<A HREF="manual_ru.html#pdf-string.sub">строка.подстр</A><BR>
-<A HREF="manual_ru.html#pdf-string.unpack">строка.распаковать</A><BR>
-<A HREF="manual_ru.html#pdf-string.upper">строка.строчные</A><BR>
+</p><p>
+<a href="manual_ru.html#6.6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица </font></font></a><br>
+<a href="manual_ru.html#pdf-table.concat"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.встроку </font></font></a><br>
+<a href="manual_ru.html#pdf-table.insert"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.вставить </font></font></a><br>
+<a href="manual_ru.html#pdf-table.move"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.переместить </font></font></a><br>
+<a href="manual_ru.html#pdf-table.pack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.упак </font></font></a><br>
+<a href="manual_ru.html#pdf-table.remove"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.удалить </font></font></a><br>
+<a href="manual_ru.html#pdf-table.sort"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.сортировать </font></font></a><br>
+<a href="manual_ru.html#pdf-table.unpack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">таблица.распак</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.6">таблица</A><BR>
-<A HREF="manual_ru.html#pdf-table.concat">таблица.встроку</A><BR>
-<A HREF="manual_ru.html#pdf-table.insert">таблица.вставить</A><BR>
-<A HREF="manual_ru.html#pdf-table.move">таблица.переместить</A><BR>
-<A HREF="manual_ru.html#pdf-table.pack">таблица.упак</A><BR>
-<A HREF="manual_ru.html#pdf-table.remove">таблица.удалить</A><BR>
-<A HREF="manual_ru.html#pdf-table.sort">таблица.сортировать</A><BR>
-<A HREF="manual_ru.html#pdf-table.unpack">таблица.распак</A><BR>
+</p><p>
+<a href="manual_ru.html#6.5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.char"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.знак </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.charpattern"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.charpattern </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.codepoint"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.кодпоз </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.codes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.коды </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.len"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.длина </font></font></a><br>
+<a href="manual_ru.html#pdf-utf8.offset"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">юникод.сдвиг</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#6.5">юникод</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.char">юникод.знак</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.charpattern">юникод.charpattern</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.codepoint">юникод.кодпоз</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.codes">юникод.коды</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.len">юникод.длина</A><BR>
-<A HREF="manual_ru.html#pdf-utf8.offset">юникод.сдвиг</A><BR>
+</p><h3><a name="env"><font style="vertical-align: inherit;"></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">переменные </font><font style="vertical-align: inherit;">среды</font></font></a></h3>
+<p>
+<a href="manual_ru.html#pdf-LUA_CPATH"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_CPATH </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_CPATH_5_3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_CPATH_5_3 </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_INIT"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_INIT </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_INIT_5_3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_INIT_5_3 </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_PATH"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_PATH </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_PATH_5_3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_PATH_5_3</font></font></a><br>
 
-<H3><A NAME="env">environment<BR>variables</A></H3>
-<P>
-<A HREF="manual_ru.html#pdf-LUA_CPATH">LUA_CPATH</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_CPATH_5_3">LUA_CPATH_5_3</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_INIT">LUA_INIT</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_INIT_5_3">LUA_INIT_5_3</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_PATH">LUA_PATH</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_PATH_5_3">LUA_PATH_5_3</A><BR>
+</p></td>
+<td>
+<h3><a name="api"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C API</font></font></a></h3>
+<p>
+<a href="manual_ru.html#lua_Alloc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Alloc </font></font></a><br>
+<a href="manual_ru.html#lua_CFunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_CFunction </font></font></a><br>
+<a href="manual_ru.html#lua_Debug"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Debug </font></font></a><br>
+<a href="manual_ru.html#lua_Hook"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Hook </font></font></a><br>
+<a href="manual_ru.html#lua_Integer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Integer </font></font></a><br>
+<a href="manual_ru.html#lua_KContext"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_KContext </font></font></a><br>
+<a href="manual_ru.html#lua_KFunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_KFunction </font></font></a><br>
+<a href="manual_ru.html#lua_Number"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Number </font></font></a><br>
+<a href="manual_ru.html#lua_Reader"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Reader </font></font></a><br>
+<a href="manual_ru.html#lua_State"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_State </font></font></a><br>
+<a href="manual_ru.html#lua_Unsigned"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Unsigned </font></font></a><br>
+<a href="manual_ru.html#lua_Writer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_Writer</font></font></a><br>
 
-</TD>
-<TD>
-<H3><A NAME="api">C API</A></H3>
-<P>
-<A HREF="manual_ru.html#lua_Alloc">lua_Alloc</A><BR>
-<A HREF="manual_ru.html#lua_CFunction">lua_CFunction</A><BR>
-<A HREF="manual_ru.html#lua_Debug">lua_Debug</A><BR>
-<A HREF="manual_ru.html#lua_Hook">lua_Hook</A><BR>
-<A HREF="manual_ru.html#lua_Integer">lua_Integer</A><BR>
-<A HREF="manual_ru.html#lua_KContext">lua_KContext</A><BR>
-<A HREF="manual_ru.html#lua_KFunction">lua_KFunction</A><BR>
-<A HREF="manual_ru.html#lua_Number">lua_Number</A><BR>
-<A HREF="manual_ru.html#lua_Reader">lua_Reader</A><BR>
-<A HREF="manual_ru.html#lua_State">lua_State</A><BR>
-<A HREF="manual_ru.html#lua_Unsigned">lua_Unsigned</A><BR>
-<A HREF="manual_ru.html#lua_Writer">lua_Writer</A><BR>
+</p><p>
+<a href="manual_ru.html#lua_absindex"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_absindex </font></font></a><br>
+<a href="manual_ru.html#lua_arith"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_arith </font></font></a><br>
+<a href="manual_ru.html#lua_atpanic"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_atpanic </font></font></a><br>
+<a href="manual_ru.html#lua_call"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_call </font></font></a><br>
+<a href="manual_ru.html#lua_callk"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_callk </font></font></a><br>
+<a href="manual_ru.html#lua_checkstack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_checkstack </font></font></a><br>
+<a href="manual_ru.html#lua_close"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_close </font></font></a><br>
+<a href="manual_ru.html#lua_compare"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_compare </font></font></a><br>
+<a href="manual_ru.html#lua_concat"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_concat </font></font></a><br>
+<a href="manual_ru.html#lua_copy"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_copy </font></font></a><br>
+<a href="manual_ru.html#lua_createtable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_createtable </font></font></a><br>
+<a href="manual_ru.html#lua_dump"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_dump </font></font></a><br>
+<a href="manual_ru.html#lua_error"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_error </font></font></a><br>
+<a href="manual_ru.html#lua_gc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gc </font></font></a><br>
+<a href="manual_ru.html#lua_getallocf"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getallocf </font></font></a><br>
+<a href="manual_ru.html#lua_getextraspace"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getextraspace </font></font></a><br>
+<a href="manual_ru.html#lua_getfield"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getfield </font></font></a><br>
+<a href="manual_ru.html#lua_getglobal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getglobal </font></font></a><br>
+<a href="manual_ru.html#lua_gethook"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gethook </font></font></a><br>
+<a href="manual_ru.html#lua_gethookcount"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gethookcount </font></font></a><br>
+<a href="manual_ru.html#lua_gethookmask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gethookmask </font></font></a><br>
+<a href="manual_ru.html#lua_geti"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_geti </font></font></a><br>
+<a href="manual_ru.html#lua_getinfo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getinfo </font></font></a><br>
+<a href="manual_ru.html#lua_getlocal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getlocal </font></font></a><br>
+<a href="manual_ru.html#lua_getmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getmetatable </font></font></a><br>
+<a href="manual_ru.html#lua_getstack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getstack </font></font></a><br>
+<a href="manual_ru.html#lua_gettable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gettable </font></font></a><br>
+<a href="manual_ru.html#lua_gettop"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_gettop </font></font></a><br>
+<a href="manual_ru.html#lua_getupvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getupvalue </font></font></a><br>
+<a href="manual_ru.html#lua_getuservalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_getuservalue </font></font></a><br>
+<a href="manual_ru.html#lua_insert"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_insert </font></font></a><br>
+<a href="manual_ru.html#lua_isboolean"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isboolean </font></font></a><br>
+<a href="manual_ru.html#lua_iscfunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_iscfunction </font></font></a><br>
+<a href="manual_ru.html#lua_isfunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isfunction </font></font></a><br>
+<a href="manual_ru.html#lua_isinteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isinteger </font></font></a><br>
+<a href="manual_ru.html#lua_islightuserdata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_islightuserdata </font></font></a><br>
+<a href="manual_ru.html#lua_isnil"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isnil </font></font></a><br>
+<a href="manual_ru.html#lua_isnone"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isnone </font></font></a><br>
+<a href="manual_ru.html#lua_isnoneornil"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isnoneornil </font></font></a><br>
+<a href="manual_ru.html#lua_isnumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isnumber </font></font></a><br>
+<a href="manual_ru.html#lua_isstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isstring </font></font></a><br>
+<a href="manual_ru.html#lua_istable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_istable </font></font></a><br>
+<a href="manual_ru.html#lua_isthread"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isthread </font></font></a><br>
+<a href="manual_ru.html#lua_isuserdata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isuserdata </font></font></a><br>
+<a href="manual_ru.html#lua_isyieldable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_isyieldable </font></font></a><br>
+<a href="manual_ru.html#lua_len"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_len </font></font></a><br>
+<a href="manual_ru.html#lua_load"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_load </font></font></a><br>
+<a href="manual_ru.html#lua_newstate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_newstate </font></font></a><br>
+<a href="manual_ru.html#lua_newtable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_newtable </font></font></a><br>
+<a href="manual_ru.html#lua_newthread"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_newthread </font></font></a><br>
+<a href="manual_ru.html#lua_newuserdata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_newuserdata </font></font></a><br>
+<a href="manual_ru.html#lua_next"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_next </font></font></a><br>
+<a href="manual_ru.html#lua_numbertointeger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_numbertointeger </font></font></a><br>
+<a href="manual_ru.html#lua_pcall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pcall </font></font></a><br>
+<a href="manual_ru.html#lua_pcallk"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pcallk </font></font></a><br>
+<a href="manual_ru.html#lua_pop"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pop </font></font></a><br>
+<a href="manual_ru.html#lua_pushboolean"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushboolean </font></font></a><br>
+<a href="manual_ru.html#lua_pushcclosure"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushcclosure </font></font></a><br>
+<a href="manual_ru.html#lua_pushcfunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushcfunction </font></font></a><br>
+<a href="manual_ru.html#lua_pushfstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushfstring </font></font></a><br>
+<a href="manual_ru.html#lua_pushglobaltable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushglobaltable </font></font></a><br>
+<a href="manual_ru.html#lua_pushinteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushinteger </font></font></a><br>
+<a href="manual_ru.html#lua_pushlightuserdata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushlightuserdata </font></font></a><br>
+<a href="manual_ru.html#lua_pushliteral"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushliteral </font></font></a><br>
+<a href="manual_ru.html#lua_pushlstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushlstring </font></font></a><br>
+<a href="manual_ru.html#lua_pushnil"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushnil </font></font></a><br>
+<a href="manual_ru.html#lua_pushnumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushnumber </font></font></a><br>
+<a href="manual_ru.html#lua_pushstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushstring </font></font></a><br>
+<a href="manual_ru.html#lua_pushthread"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushthread </font></font></a><br>
+<a href="manual_ru.html#lua_pushvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushvalue </font></font></a><br>
+<a href="manual_ru.html#lua_pushvfstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_pushvfstring </font></font></a><br>
+<a href="manual_ru.html#lua_rawequal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawequal </font></font></a><br>
+<a href="manual_ru.html#lua_rawget"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawget </font></font></a><br>
+<a href="manual_ru.html#lua_rawgeti"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawgeti </font></font></a><br>
+<a href="manual_ru.html#lua_rawgetp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">лу </font><font style="vertical-align: inherit;">a_rawgetp </font></font></a><br>
+<a href="manual_ru.html#lua_rawlen"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawlen </font></font></a><br>
+<a href="manual_ru.html#lua_rawset"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawset </font></font></a><br>
+<a href="manual_ru.html#lua_rawseti"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawseti </font></font></a><br>
+<a href="manual_ru.html#lua_rawsetp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rawsetp </font></font></a><br>
+<a href="manual_ru.html#lua_register"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_register </font></font></a><br>
+<a href="manual_ru.html#lua_remove"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_remove </font></font></a><br>
+<a href="manual_ru.html#lua_replace"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_replace </font></font></a><br>
+<a href="manual_ru.html#lua_resume"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_resume </font></font></a><br>
+<a href="manual_ru.html#lua_rotate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_rotate </font></font></a><br>
+<a href="manual_ru.html#lua_setallocf"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setallocf </font></font></a><br>
+<a href="manual_ru.html#lua_setfield"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setfield </font></font></a><br>
+<a href="manual_ru.html#lua_setglobal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setglobal </font></font></a><br>
+<a href="manual_ru.html#lua_sethook"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_sethook </font></font></a><br>
+<a href="manual_ru.html#lua_seti"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_seti </font></font></a><br>
+<a href="manual_ru.html#lua_setlocal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setlocal </font></font></a><br>
+<a href="manual_ru.html#lua_setmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setmetatable </font></font></a><br>
+<a href="manual_ru.html#lua_settable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_settable </font></font></a><br>
+<a href="manual_ru.html#lua_settop"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_settop </font></font></a><br>
+<a href="manual_ru.html#lua_setupvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setupvalue </font></font></a><br>
+<a href="manual_ru.html#lua_setuservalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_setuservalue </font></font></a><br>
+<a href="manual_ru.html#lua_status"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_status </font></font></a><br>
+<a href="manual_ru.html#lua_stringtonumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_stringtonumber </font></font></a><br>
+<a href="manual_ru.html#lua_toboolean"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_toboolean </font></font></a><br>
+<a href="manual_ru.html#lua_tocfunction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tocfunction </font></font></a><br>
+<a href="manual_ru.html#lua_tointeger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tointeger </font></font></a><br>
+<a href="manual_ru.html#lua_tointegerx"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tointegerx </font></font></a><br>
+<a href="manual_ru.html#lua_tolstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tolstring </font></font></a><br>
+<a href="manual_ru.html#lua_tonumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tonumber </font></font></a><br>
+<a href="manual_ru.html#lua_tonumberx"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tonumberx </font></font></a><br>
+<a href="manual_ru.html#lua_topointer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_topointer </font></font></a><br>
+<a href="manual_ru.html#lua_tostring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tostring </font></font></a><br>
+<a href="manual_ru.html#lua_tothread"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_tothread </font></font></a><br>
+<a href="manual_ru.html#lua_touserdata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_touserdata </font></font></a><br>
+<a href="manual_ru.html#lua_type"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_type </font></font></a><br>
+<a href="manual_ru.html#lua_typename"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_typename </font></font></a><br>
+<a href="manual_ru.html#lua_upvalueid"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_upvalueid </font></font></a><br>
+<a href="manual_ru.html#lua_upvalueindex"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_upvalueindex </font></font></a><br>
+<a href="manual_ru.html#lua_upvaluejoin"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_upvaluejoin </font></font></a><br>
+<a href="manual_ru.html#lua_version"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_version </font></font></a><br>
+<a href="manual_ru.html#lua_xmove"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_xmove </font></font></a><br>
+<a href="manual_ru.html#lua_yield"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_yield </font></font></a><br>
+<a href="manual_ru.html#lua_yieldk"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">lua_yieldk</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#lua_absindex">lua_absindex</A><BR>
-<A HREF="manual_ru.html#lua_arith">lua_arith</A><BR>
-<A HREF="manual_ru.html#lua_atpanic">lua_atpanic</A><BR>
-<A HREF="manual_ru.html#lua_call">lua_call</A><BR>
-<A HREF="manual_ru.html#lua_callk">lua_callk</A><BR>
-<A HREF="manual_ru.html#lua_checkstack">lua_checkstack</A><BR>
-<A HREF="manual_ru.html#lua_close">lua_close</A><BR>
-<A HREF="manual_ru.html#lua_compare">lua_compare</A><BR>
-<A HREF="manual_ru.html#lua_concat">lua_concat</A><BR>
-<A HREF="manual_ru.html#lua_copy">lua_copy</A><BR>
-<A HREF="manual_ru.html#lua_createtable">lua_createtable</A><BR>
-<A HREF="manual_ru.html#lua_dump">lua_dump</A><BR>
-<A HREF="manual_ru.html#lua_error">lua_error</A><BR>
-<A HREF="manual_ru.html#lua_gc">lua_gc</A><BR>
-<A HREF="manual_ru.html#lua_getallocf">lua_getallocf</A><BR>
-<A HREF="manual_ru.html#lua_getextraspace">lua_getextraspace</A><BR>
-<A HREF="manual_ru.html#lua_getfield">lua_getfield</A><BR>
-<A HREF="manual_ru.html#lua_getglobal">lua_getglobal</A><BR>
-<A HREF="manual_ru.html#lua_gethook">lua_gethook</A><BR>
-<A HREF="manual_ru.html#lua_gethookcount">lua_gethookcount</A><BR>
-<A HREF="manual_ru.html#lua_gethookmask">lua_gethookmask</A><BR>
-<A HREF="manual_ru.html#lua_geti">lua_geti</A><BR>
-<A HREF="manual_ru.html#lua_getinfo">lua_getinfo</A><BR>
-<A HREF="manual_ru.html#lua_getlocal">lua_getlocal</A><BR>
-<A HREF="manual_ru.html#lua_getmetatable">lua_getmetatable</A><BR>
-<A HREF="manual_ru.html#lua_getstack">lua_getstack</A><BR>
-<A HREF="manual_ru.html#lua_gettable">lua_gettable</A><BR>
-<A HREF="manual_ru.html#lua_gettop">lua_gettop</A><BR>
-<A HREF="manual_ru.html#lua_getupvalue">lua_getupvalue</A><BR>
-<A HREF="manual_ru.html#lua_getuservalue">lua_getuservalue</A><BR>
-<A HREF="manual_ru.html#lua_insert">lua_insert</A><BR>
-<A HREF="manual_ru.html#lua_isboolean">lua_isboolean</A><BR>
-<A HREF="manual_ru.html#lua_iscfunction">lua_iscfunction</A><BR>
-<A HREF="manual_ru.html#lua_isfunction">lua_isfunction</A><BR>
-<A HREF="manual_ru.html#lua_isinteger">lua_isinteger</A><BR>
-<A HREF="manual_ru.html#lua_islightuserdata">lua_islightuserdata</A><BR>
-<A HREF="manual_ru.html#lua_isnil">lua_isnil</A><BR>
-<A HREF="manual_ru.html#lua_isnone">lua_isnone</A><BR>
-<A HREF="manual_ru.html#lua_isnoneornil">lua_isnoneornil</A><BR>
-<A HREF="manual_ru.html#lua_isnumber">lua_isnumber</A><BR>
-<A HREF="manual_ru.html#lua_isstring">lua_isstring</A><BR>
-<A HREF="manual_ru.html#lua_istable">lua_istable</A><BR>
-<A HREF="manual_ru.html#lua_isthread">lua_isthread</A><BR>
-<A HREF="manual_ru.html#lua_isuserdata">lua_isuserdata</A><BR>
-<A HREF="manual_ru.html#lua_isyieldable">lua_isyieldable</A><BR>
-<A HREF="manual_ru.html#lua_len">lua_len</A><BR>
-<A HREF="manual_ru.html#lua_load">lua_load</A><BR>
-<A HREF="manual_ru.html#lua_newstate">lua_newstate</A><BR>
-<A HREF="manual_ru.html#lua_newtable">lua_newtable</A><BR>
-<A HREF="manual_ru.html#lua_newthread">lua_newthread</A><BR>
-<A HREF="manual_ru.html#lua_newuserdata">lua_newuserdata</A><BR>
-<A HREF="manual_ru.html#lua_next">lua_next</A><BR>
-<A HREF="manual_ru.html#lua_numbertointeger">lua_numbertointeger</A><BR>
-<A HREF="manual_ru.html#lua_pcall">lua_pcall</A><BR>
-<A HREF="manual_ru.html#lua_pcallk">lua_pcallk</A><BR>
-<A HREF="manual_ru.html#lua_pop">lua_pop</A><BR>
-<A HREF="manual_ru.html#lua_pushboolean">lua_pushboolean</A><BR>
-<A HREF="manual_ru.html#lua_pushcclosure">lua_pushcclosure</A><BR>
-<A HREF="manual_ru.html#lua_pushcfunction">lua_pushcfunction</A><BR>
-<A HREF="manual_ru.html#lua_pushfstring">lua_pushfstring</A><BR>
-<A HREF="manual_ru.html#lua_pushglobaltable">lua_pushglobaltable</A><BR>
-<A HREF="manual_ru.html#lua_pushinteger">lua_pushinteger</A><BR>
-<A HREF="manual_ru.html#lua_pushlightuserdata">lua_pushlightuserdata</A><BR>
-<A HREF="manual_ru.html#lua_pushliteral">lua_pushliteral</A><BR>
-<A HREF="manual_ru.html#lua_pushlstring">lua_pushlstring</A><BR>
-<A HREF="manual_ru.html#lua_pushnil">lua_pushnil</A><BR>
-<A HREF="manual_ru.html#lua_pushnumber">lua_pushnumber</A><BR>
-<A HREF="manual_ru.html#lua_pushstring">lua_pushstring</A><BR>
-<A HREF="manual_ru.html#lua_pushthread">lua_pushthread</A><BR>
-<A HREF="manual_ru.html#lua_pushvalue">lua_pushvalue</A><BR>
-<A HREF="manual_ru.html#lua_pushvfstring">lua_pushvfstring</A><BR>
-<A HREF="manual_ru.html#lua_rawequal">lua_rawequal</A><BR>
-<A HREF="manual_ru.html#lua_rawget">lua_rawget</A><BR>
-<A HREF="manual_ru.html#lua_rawgeti">lua_rawgeti</A><BR>
-<A HREF="manual_ru.html#lua_rawgetp">lua_rawgetp</A><BR>
-<A HREF="manual_ru.html#lua_rawlen">lua_rawlen</A><BR>
-<A HREF="manual_ru.html#lua_rawset">lua_rawset</A><BR>
-<A HREF="manual_ru.html#lua_rawseti">lua_rawseti</A><BR>
-<A HREF="manual_ru.html#lua_rawsetp">lua_rawsetp</A><BR>
-<A HREF="manual_ru.html#lua_register">lua_register</A><BR>
-<A HREF="manual_ru.html#lua_remove">lua_remove</A><BR>
-<A HREF="manual_ru.html#lua_replace">lua_replace</A><BR>
-<A HREF="manual_ru.html#lua_resume">lua_resume</A><BR>
-<A HREF="manual_ru.html#lua_rotate">lua_rotate</A><BR>
-<A HREF="manual_ru.html#lua_setallocf">lua_setallocf</A><BR>
-<A HREF="manual_ru.html#lua_setfield">lua_setfield</A><BR>
-<A HREF="manual_ru.html#lua_setglobal">lua_setglobal</A><BR>
-<A HREF="manual_ru.html#lua_sethook">lua_sethook</A><BR>
-<A HREF="manual_ru.html#lua_seti">lua_seti</A><BR>
-<A HREF="manual_ru.html#lua_setlocal">lua_setlocal</A><BR>
-<A HREF="manual_ru.html#lua_setmetatable">lua_setmetatable</A><BR>
-<A HREF="manual_ru.html#lua_settable">lua_settable</A><BR>
-<A HREF="manual_ru.html#lua_settop">lua_settop</A><BR>
-<A HREF="manual_ru.html#lua_setupvalue">lua_setupvalue</A><BR>
-<A HREF="manual_ru.html#lua_setuservalue">lua_setuservalue</A><BR>
-<A HREF="manual_ru.html#lua_status">lua_status</A><BR>
-<A HREF="manual_ru.html#lua_stringtonumber">lua_stringtonumber</A><BR>
-<A HREF="manual_ru.html#lua_toboolean">lua_toboolean</A><BR>
-<A HREF="manual_ru.html#lua_tocfunction">lua_tocfunction</A><BR>
-<A HREF="manual_ru.html#lua_tointeger">lua_tointeger</A><BR>
-<A HREF="manual_ru.html#lua_tointegerx">lua_tointegerx</A><BR>
-<A HREF="manual_ru.html#lua_tolstring">lua_tolstring</A><BR>
-<A HREF="manual_ru.html#lua_tonumber">lua_tonumber</A><BR>
-<A HREF="manual_ru.html#lua_tonumberx">lua_tonumberx</A><BR>
-<A HREF="manual_ru.html#lua_topointer">lua_topointer</A><BR>
-<A HREF="manual_ru.html#lua_tostring">lua_tostring</A><BR>
-<A HREF="manual_ru.html#lua_tothread">lua_tothread</A><BR>
-<A HREF="manual_ru.html#lua_touserdata">lua_touserdata</A><BR>
-<A HREF="manual_ru.html#lua_type">lua_type</A><BR>
-<A HREF="manual_ru.html#lua_typename">lua_typename</A><BR>
-<A HREF="manual_ru.html#lua_upvalueid">lua_upvalueid</A><BR>
-<A HREF="manual_ru.html#lua_upvalueindex">lua_upvalueindex</A><BR>
-<A HREF="manual_ru.html#lua_upvaluejoin">lua_upvaluejoin</A><BR>
-<A HREF="manual_ru.html#lua_version">lua_version</A><BR>
-<A HREF="manual_ru.html#lua_xmove">lua_xmove</A><BR>
-<A HREF="manual_ru.html#lua_yield">lua_yield</A><BR>
-<A HREF="manual_ru.html#lua_yieldk">lua_yieldk</A><BR>
+</p></td>
+<td>
+<h3><a name="auxlib"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вспомогательная библиотека</font></font></a></h3>
+<p>
+<a href="manual_ru.html#luaL_Buffer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_Buffer </font></font></a><br>
+<a href="manual_ru.html#luaL_Reg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_Reg </font></font></a><br>
+<a href="manual_ru.html#luaL_Stream"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_Stream</font></font></a><br>
 
-</TD>
-<TD>
-<H3><A NAME="auxlib">auxiliary library</A></H3>
-<P>
-<A HREF="manual_ru.html#luaL_Buffer">luaL_Buffer</A><BR>
-<A HREF="manual_ru.html#luaL_Reg">luaL_Reg</A><BR>
-<A HREF="manual_ru.html#luaL_Stream">luaL_Stream</A><BR>
+</p><p>
+<a href="manual_ru.html#luaL_addchar"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_addchar </font></font></a><br>
+<a href="manual_ru.html#luaL_addlstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_addlstring </font></font></a><br>
+<a href="manual_ru.html#luaL_addsize"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_addsize </font></font></a><br>
+<a href="manual_ru.html#luaL_addstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_addstring </font></font></a><br>
+<a href="manual_ru.html#luaL_addvalue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_addvalue </font></font></a><br>
+<a href="manual_ru.html#luaL_argcheck"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_argcheck </font></font></a><br>
+<a href="manual_ru.html#luaL_argerror"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_argerror </font></font></a><br>
+<a href="manual_ru.html#luaL_buffinit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_buffinit </font></font></a><br>
+<a href="manual_ru.html#luaL_buffinitsize"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_buffinitsize </font></font></a><br>
+<a href="manual_ru.html#luaL_callmeta"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_callmeta </font></font></a><br>
+<a href="manual_ru.html#luaL_checkany"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkany </font></font></a><br>
+<a href="manual_ru.html#luaL_checkinteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkinteger </font></font></a><br>
+<a href="manual_ru.html#luaL_checklstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checklstring </font></font></a><br>
+<a href="manual_ru.html#luaL_checknumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checknumber </font></font></a><br>
+<a href="manual_ru.html#luaL_checkoption"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkoption </font></font></a><br>
+<a href="manual_ru.html#luaL_checkstack"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkstack </font></font></a><br>
+<a href="manual_ru.html#luaL_checkstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkstring </font></font></a><br>
+<a href="manual_ru.html#luaL_checktype"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checktype </font></font></a><br>
+<a href="manual_ru.html#luaL_checkudata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkudata </font></font></a><br>
+<a href="manual_ru.html#luaL_checkversion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_checkversion </font></font></a><br>
+<a href="manual_ru.html#luaL_dofile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_dofile </font></font></a><br>
+<a href="manual_ru.html#luaL_dostring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_dostring </font></font></a><br>
+<a href="manual_ru.html#luaL_error"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_error </font></font></a><br>
+<a href="manual_ru.html#luaL_execresult"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_execresult </font></font></a><br>
+<a href="manual_ru.html#luaL_fileresult"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_fileresult </font></font></a><br>
+<a href="manual_ru.html#luaL_getmetafield"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_getmetafield </font></font></a><br>
+<a href="manual_ru.html#luaL_getmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_getmetatable </font></font></a><br>
+<a href="manual_ru.html#luaL_getsubtable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_getsubtable </font></font></a><br>
+<a href="manual_ru.html#luaL_gsub"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_gsub </font></font></a><br>
+<a href="manual_ru.html#luaL_len"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_len </font></font></a><br>
+<a href="manual_ru.html#luaL_loadbuffer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_loadbuffer </font></font></a><br>
+<a href="manual_ru.html#luaL_loadbufferx"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_loadbufferx </font></font></a><br>
+<a href="manual_ru.html#luaL_loadfile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_loadfile </font></font></a><br>
+<a href="manual_ru.html#luaL_loadfilex"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_loadfilex </font></font></a><br>
+<a href="manual_ru.html#luaL_loadstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_loadstring </font></font></a><br>
+<a href="manual_ru.html#luaL_newlib"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_newlib </font></font></a><br>
+<a href="manual_ru.html#luaL_newlibtable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_newlibtable </font></font></a><br>
+<a href="manual_ru.html#luaL_newmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_newmetatable </font></font></a><br>
+<a href="manual_ru.html#luaL_newstate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_newstate </font></font></a><br>
+<a href="manual_ru.html#luaL_openlibs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_openlibs </font></font></a><br>
+<a href="manual_ru.html#luaL_opt"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_opt </font></font></a><br>
+<a href="manual_ru.html#luaL_optinteger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_optinteger </font></font></a><br>
+<a href="manual_ru.html#luaL_optlstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_optlstring </font></font></a><br>
+<a href="manual_ru.html#luaL_optnumber"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_optnumber </font></font></a><br>
+<a href="manual_ru.html#luaL_optstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_optstring </font></font></a><br>
+<a href="manual_ru.html#luaL_prepbuffer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_prepbuffer </font></font></a><br>
+<a href="manual_ru.html#luaL_prepbuffsize"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_prepbuffsize </font></font></a><br>
+<a href="manual_ru.html#luaL_pushresult"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_pushresult </font></font></a><br>
+<a href="manual_ru.html#luaL_pushresultsize"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_pushresultsize </font></font></a><br>
+<a href="manual_ru.html#luaL_ref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_ref </font></font></a><br>
+<a href="manual_ru.html#luaL_requiref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_requiref </font></font></a><br>
+<a href="manual_ru.html#luaL_setfuncs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_setfuncs </font></font></a><br>
+<a href="manual_ru.html#luaL_setmetatable"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_setmetatable </font></font></a><br>
+<a href="manual_ru.html#luaL_testudata"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_testudata </font></font></a><br>
+<a href="manual_ru.html#luaL_tolstring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_tolstring </font></font></a><br>
+<a href="manual_ru.html#luaL_traceback"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_traceback </font></font></a><br>
+<a href="manual_ru.html#luaL_typename"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_typename </font></font></a><br>
+<a href="manual_ru.html#luaL_unref"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_unref </font></font></a><br>
+<a href="manual_ru.html#luaL_where"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaL_where</font></font></a><br>
 
-<P>
-<A HREF="manual_ru.html#luaL_addchar">luaL_addchar</A><BR>
-<A HREF="manual_ru.html#luaL_addlstring">luaL_addlstring</A><BR>
-<A HREF="manual_ru.html#luaL_addsize">luaL_addsize</A><BR>
-<A HREF="manual_ru.html#luaL_addstring">luaL_addstring</A><BR>
-<A HREF="manual_ru.html#luaL_addvalue">luaL_addvalue</A><BR>
-<A HREF="manual_ru.html#luaL_argcheck">luaL_argcheck</A><BR>
-<A HREF="manual_ru.html#luaL_argerror">luaL_argerror</A><BR>
-<A HREF="manual_ru.html#luaL_buffinit">luaL_buffinit</A><BR>
-<A HREF="manual_ru.html#luaL_buffinitsize">luaL_buffinitsize</A><BR>
-<A HREF="manual_ru.html#luaL_callmeta">luaL_callmeta</A><BR>
-<A HREF="manual_ru.html#luaL_checkany">luaL_checkany</A><BR>
-<A HREF="manual_ru.html#luaL_checkinteger">luaL_checkinteger</A><BR>
-<A HREF="manual_ru.html#luaL_checklstring">luaL_checklstring</A><BR>
-<A HREF="manual_ru.html#luaL_checknumber">luaL_checknumber</A><BR>
-<A HREF="manual_ru.html#luaL_checkoption">luaL_checkoption</A><BR>
-<A HREF="manual_ru.html#luaL_checkstack">luaL_checkstack</A><BR>
-<A HREF="manual_ru.html#luaL_checkstring">luaL_checkstring</A><BR>
-<A HREF="manual_ru.html#luaL_checktype">luaL_checktype</A><BR>
-<A HREF="manual_ru.html#luaL_checkudata">luaL_checkudata</A><BR>
-<A HREF="manual_ru.html#luaL_checkversion">luaL_checkversion</A><BR>
-<A HREF="manual_ru.html#luaL_dofile">luaL_dofile</A><BR>
-<A HREF="manual_ru.html#luaL_dostring">luaL_dostring</A><BR>
-<A HREF="manual_ru.html#luaL_error">luaL_error</A><BR>
-<A HREF="manual_ru.html#luaL_execresult">luaL_execresult</A><BR>
-<A HREF="manual_ru.html#luaL_fileresult">luaL_fileresult</A><BR>
-<A HREF="manual_ru.html#luaL_getmetafield">luaL_getmetafield</A><BR>
-<A HREF="manual_ru.html#luaL_getmetatable">luaL_getmetatable</A><BR>
-<A HREF="manual_ru.html#luaL_getsubtable">luaL_getsubtable</A><BR>
-<A HREF="manual_ru.html#luaL_gsub">luaL_gsub</A><BR>
-<A HREF="manual_ru.html#luaL_len">luaL_len</A><BR>
-<A HREF="manual_ru.html#luaL_loadbuffer">luaL_loadbuffer</A><BR>
-<A HREF="manual_ru.html#luaL_loadbufferx">luaL_loadbufferx</A><BR>
-<A HREF="manual_ru.html#luaL_loadfile">luaL_loadfile</A><BR>
-<A HREF="manual_ru.html#luaL_loadfilex">luaL_loadfilex</A><BR>
-<A HREF="manual_ru.html#luaL_loadstring">luaL_loadstring</A><BR>
-<A HREF="manual_ru.html#luaL_newlib">luaL_newlib</A><BR>
-<A HREF="manual_ru.html#luaL_newlibtable">luaL_newlibtable</A><BR>
-<A HREF="manual_ru.html#luaL_newmetatable">luaL_newmetatable</A><BR>
-<A HREF="manual_ru.html#luaL_newstate">luaL_newstate</A><BR>
-<A HREF="manual_ru.html#luaL_openlibs">luaL_openlibs</A><BR>
-<A HREF="manual_ru.html#luaL_opt">luaL_opt</A><BR>
-<A HREF="manual_ru.html#luaL_optinteger">luaL_optinteger</A><BR>
-<A HREF="manual_ru.html#luaL_optlstring">luaL_optlstring</A><BR>
-<A HREF="manual_ru.html#luaL_optnumber">luaL_optnumber</A><BR>
-<A HREF="manual_ru.html#luaL_optstring">luaL_optstring</A><BR>
-<A HREF="manual_ru.html#luaL_prepbuffer">luaL_prepbuffer</A><BR>
-<A HREF="manual_ru.html#luaL_prepbuffsize">luaL_prepbuffsize</A><BR>
-<A HREF="manual_ru.html#luaL_pushresult">luaL_pushresult</A><BR>
-<A HREF="manual_ru.html#luaL_pushresultsize">luaL_pushresultsize</A><BR>
-<A HREF="manual_ru.html#luaL_ref">luaL_ref</A><BR>
-<A HREF="manual_ru.html#luaL_requiref">luaL_requiref</A><BR>
-<A HREF="manual_ru.html#luaL_setfuncs">luaL_setfuncs</A><BR>
-<A HREF="manual_ru.html#luaL_setmetatable">luaL_setmetatable</A><BR>
-<A HREF="manual_ru.html#luaL_testudata">luaL_testudata</A><BR>
-<A HREF="manual_ru.html#luaL_tolstring">luaL_tolstring</A><BR>
-<A HREF="manual_ru.html#luaL_traceback">luaL_traceback</A><BR>
-<A HREF="manual_ru.html#luaL_typename">luaL_typename</A><BR>
-<A HREF="manual_ru.html#luaL_unref">luaL_unref</A><BR>
-<A HREF="manual_ru.html#luaL_where">luaL_where</A><BR>
+</p><h3><a name="library"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">стандартная библиотека</font></font></a></h3>
+<p>
+<a href="manual_ru.html#pdf-luaopen_base"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_base </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_coroutine"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_coroutine </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_debug"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_debug </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_io"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_io </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_math"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_math </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_os"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_os </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_package"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_package </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_string"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_string </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_table"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_table </font></font></a><br>
+<a href="manual_ru.html#pdf-luaopen_utf8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">luaopen_utf8</font></font></a><br>
 
-<H3><A NAME="library">standard library</A></H3>
-<P>
-<A HREF="manual_ru.html#pdf-luaopen_base">luaopen_base</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_coroutine">luaopen_coroutine</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_debug">luaopen_debug</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_io">luaopen_io</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_math">luaopen_math</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_os">luaopen_os</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_package">luaopen_package</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_string">luaopen_string</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_table">luaopen_table</A><BR>
-<A HREF="manual_ru.html#pdf-luaopen_utf8">luaopen_utf8</A><BR>
+</p><h3><a name="constants"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">константы</font></font></a></h3>
+<p>
+<a href="manual_ru.html#pdf-LUA_ERRERR"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRERR </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_ERRFILE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRFILE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_ERRGCMM"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRGCMM </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_ERRMEM"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRMEM </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_ERRRUN"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRRUN </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_ERRSYNTAX"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_ERRSYNTAX </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_HOOKCALL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_HOOKCALL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_HOOKCOUNT"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_HOOKCOUNT </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_HOOKLINE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_HOOKLINE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_HOOKRET"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_HOOKRET </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_HOOKTAILCALL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_HOOKTAILCALL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MASKCALL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MASKCALL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MASKCOUNT"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MASKCOUNT </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MASKLINE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MASKLINE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MASKRET"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MASKRET </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MAXINTEGER"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MAXINTEGER </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MININTEGER"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MININTEGER </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MINSTACK"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MINSTACK </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_MULTRET"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_MULTRET </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_NOREF"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_NOREF </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OK"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OK </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPADD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPADD </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPBAND"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPBAND </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPBNOT"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPBNOT </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPBOR"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPBOR </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPBXOR"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPBXOR </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPDIV"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPDIV </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPEQ"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPEQ </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPIDIV"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPIDIV </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPLE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPLE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPLT"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPLT </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPMOD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPMOD </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPMUL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPMUL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPPOW"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPPOW </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPSHL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPSHL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPSHR"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPSHR </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPSUB"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPSUB </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_OPUNM"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_OPUNM </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_REFNIL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_REFNIL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_REGISTRYINDEX"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_REGISTRYINDEX </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_RIDX_GLOBALS"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_RIDX_GLOBALS </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_RIDX_MAINTHREAD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_RIDX_MAINTHREAD </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TBOOLEAN"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TBOOLEAN </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TFUNCTION"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TFUNCTION </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TLIGHTUSERDATA"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TLIGHTUSERDATA </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TNIL"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TNIL </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TNONE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TNONE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TNUMBER"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TNUMBER </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TSTRING"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TSTRING </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TTABLE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TTABLE </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TTHREAD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TTHREAD </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_TUSERDATA"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_TUSERDATA </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_USE_APICHECK"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_USE_APICHECK </font></font></a><br>
+<a href="manual_ru.html#pdf-LUA_YIELD"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUA_YIELD </font></font></a><br>
+<a href="manual_ru.html#pdf-LUAL_BUFFERSIZE"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LUAL_BUFFERSIZE</font></font></a><br>
 
-<H3><A NAME="constants">constants</A></H3>
-<P>
-<A HREF="manual_ru.html#pdf-LUA_ERRERR">LUA_ERRERR</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_ERRFILE">LUA_ERRFILE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_ERRGCMM">LUA_ERRGCMM</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_ERRMEM">LUA_ERRMEM</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_ERRRUN">LUA_ERRRUN</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_ERRSYNTAX">LUA_ERRSYNTAX</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_HOOKCALL">LUA_HOOKCALL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_HOOKCOUNT">LUA_HOOKCOUNT</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_HOOKLINE">LUA_HOOKLINE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_HOOKRET">LUA_HOOKRET</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_HOOKTAILCALL">LUA_HOOKTAILCALL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MASKCALL">LUA_MASKCALL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MASKCOUNT">LUA_MASKCOUNT</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MASKLINE">LUA_MASKLINE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MASKRET">LUA_MASKRET</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MAXINTEGER">LUA_MAXINTEGER</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MININTEGER">LUA_MININTEGER</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MINSTACK">LUA_MINSTACK</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_MULTRET">LUA_MULTRET</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_NOREF">LUA_NOREF</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OK">LUA_OK</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPADD">LUA_OPADD</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPBAND">LUA_OPBAND</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPBNOT">LUA_OPBNOT</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPBOR">LUA_OPBOR</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPBXOR">LUA_OPBXOR</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPDIV">LUA_OPDIV</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPEQ">LUA_OPEQ</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPIDIV">LUA_OPIDIV</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPLE">LUA_OPLE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPLT">LUA_OPLT</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPMOD">LUA_OPMOD</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPMUL">LUA_OPMUL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPPOW">LUA_OPPOW</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPSHL">LUA_OPSHL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPSHR">LUA_OPSHR</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPSUB">LUA_OPSUB</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_OPUNM">LUA_OPUNM</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_REFNIL">LUA_REFNIL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_REGISTRYINDEX">LUA_REGISTRYINDEX</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_RIDX_GLOBALS">LUA_RIDX_GLOBALS</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_RIDX_MAINTHREAD">LUA_RIDX_MAINTHREAD</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TBOOLEAN">LUA_TBOOLEAN</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TFUNCTION">LUA_TFUNCTION</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TLIGHTUSERDATA">LUA_TLIGHTUSERDATA</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TNIL">LUA_TNIL</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TNONE">LUA_TNONE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TNUMBER">LUA_TNUMBER</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TSTRING">LUA_TSTRING</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TTABLE">LUA_TTABLE</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TTHREAD">LUA_TTHREAD</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_TUSERDATA">LUA_TUSERDATA</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_USE_APICHECK">LUA_USE_APICHECK</A><BR>
-<A HREF="manual_ru.html#pdf-LUA_YIELD">LUA_YIELD</A><BR>
-<A HREF="manual_ru.html#pdf-LUAL_BUFFERSIZE">LUAL_BUFFERSIZE</A><BR>
-
-</TD>
-</TR>
-</TABLE>
-
-<P CLASS="footer">
-Last update:
-Thu Dec 22 18:29:39 BRST 2016
-</P>
-<!--
-Last change: revised for Lua 5.3.4
--->
-
-</BODY>
-</HTML>
+</p></td>
+</tr>
+</tbody></table>
+</body>
+</html>

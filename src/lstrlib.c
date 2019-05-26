@@ -198,12 +198,25 @@ static const char *utf8_decode (const char *o, int *val) {
   return (const char *)s + 1;  /* +1 to include first byte */
 }
 
-typedef struct GTokenizeState {
-  const char *src;  /* current position */
-  const char *src_utf8;  /* current position at last utf8 symbol start*/
-  int idx_utf8;  /* current utf8 symbol index */
+struct GTokenPosition {
 	int line; 
 	int col;
+};
+
+typedef struct GTokenAnchor {
+	struct GTokenPosition;
+  int idx_utf8;  /* current utf8 symbol index */
+  const char *src_utf8;  /* current position at last utf8 symbol start*/
+  const char *src;  /* current position */
+} GTokenAnchor;
+
+typedef struct GTokenizeState {
+	struct GTokenAnchor;
+  // const char *src;  /* current position */
+  // const char *src_utf8;  /* current position at last utf8 symbol start*/
+  // int idx_utf8;  /* current utf8 symbol index */
+	// int line; 
+	int ref;
   const char *p;  /* pattern */
   const char *lastmatch;  /* end of last match */
   lua_State *L;
@@ -212,8 +225,7 @@ typedef struct GTokenizeState {
   const char *p_end;  /* end ('\0') of pattern */
 } GTokenizeState;
 
-static int str_tokenize_aux (lua_State *L) {
-  GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, lua_upvalueindex(3));
+static int str_tokenize_aux0 (lua_State *L, GTokenizeState *gm) {
   const unsigned char *src, *src_end = (const unsigned char *)gm->src_end;
 	if(gm->src > gm->src_end) return 0;
   unsigned int c;
@@ -266,9 +278,19 @@ static int str_tokenize_aux (lua_State *L) {
 					capture_toks("eq");
 				}else{ capture_toks("assign"); }
 		    break;
+			case '-': 
+				gm->col++;
+		    if(*tok_end=='-'){
+					gm->col++;++tok_end;
+			    for(tok_end = src; tok_end <= src_end && *tok_end!='\n'; tok_end++){
+						if(*tok_end=='\n'){ gm->line++; gm->col = 1; }else{ gm->col++; }
+					}
+					capture_toks("comm");
+				}else{ capture_toks("pun"); }
+		    break;
 		  case '(': case ')': case '{': case '}': case '[': case ']': 
 			case '+': case '*': case '/': case '^': case '#': case ',':  
-			case '-': case '%': case '&': case '|': case ';':  
+			case '%': case '&': case '|': case ';':  
 				gm->col++; capture_toks("pun"); break;
 		  case '.':
 				gm->col++;
@@ -319,6 +341,11 @@ static int str_tokenize_aux (lua_State *L) {
   return 0;  /* not found */
 }
 
+static int str_tokenize_aux (lua_State *L) {
+  GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, lua_upvalueindex(3));
+	return str_tokenize_aux0(L, gm);
+}
+
 
 static int str_tokenize (lua_State *L) {
   size_t ls, lp;
@@ -333,6 +360,7 @@ static int str_tokenize (lua_State *L) {
   gm->src_utf8 = s;
   gm->idx_utf8 = 0;
   gm->line = 1;
+  gm->ref = LUA_NOREF;
   gm->col = 1;
 	gm->src_end = s + ls;
   gm->p_end = p + lp;
@@ -340,6 +368,22 @@ static int str_tokenize (lua_State *L) {
   return 1;
 }
 
+static int str_tokenize_ref (lua_State *L) {
+  GTokenizeState *t = (GTokenizeState *)lua_touserdata(L, lua_upvalueindex(3));
+	if(!lua_isnone(L, 2)){
+		if(t->ref != LUA_NOREF)
+			luaL_unref(L, LUA_REGISTRYINDEX, t->ref); 
+		lua_settop(L, 2);
+		t->ref = luaL_ref(L, LUA_REGISTRYINDEX);
+		return 0;
+	}else{
+		if(t->ref != LUA_NOREF)
+			lua_rawgeti(L, LUA_REGISTRYINDEX, t->ref); 
+		else
+			lua_pushnil(L);
+		return(1);
+	}
+}
 
 static int str_tokenize_savestate (lua_State *L) {
 	luaL_checktype(L, 1, LUA_TFUNCTION);
@@ -358,6 +402,7 @@ static int str_tokenize_loadstate (lua_State *L) {
   GTokenizeState *gm0 = (GTokenizeState *)lua_touserdata(L, 2);
   lua_getupvalue(L, 1, 3);
 	GTokenizeState *gm = (GTokenizeState *)lua_touserdata(L, -1);
+	if(! (gm0->src>=gm->src_init && gm0->src<=gm->src_end) ) luaL_error(L, "invalid tokenizer state");
   *gm = *gm0;
   return 1;
 }
@@ -370,6 +415,162 @@ static int str_tokenize_getpos (lua_State *L) {
 	lua_pushinteger(L, gm->col);
   return 2;
 }
+
+#define TOKENIZER_CLASS_NAME "TOKENIZER"
+#define TOKENIZER_POS_NAME "TOKENIZER.POS"
+
+inline static void 
+LuaM_userdata_register_class(lua_State *L, const char * name, luaL_Reg lib[], luaL_Reg mt[]) {
+	int i;
+	luaL_newmetatable(L, name); 
+	luaL_newlib(L, (luaL_Reg *)lib);
+	lua_setfield(L, -2, "__index"); 
+	lua_pushstring(L, "__metatable");
+ 	// lua_pushstring(L, name); 
+ 	lua_pushnil(L);
+	for( i=0; mt[i].name != NULL; i++) {
+		lua_pushcfunction(L, mt[i].func);
+		lua_setfield(L, -4, mt[i].name);
+	}
+	lua_settable(L, -3); 
+	lua_pop(L, 1);
+}
+
+
+
+GTokenizeState*  lua_check_Tokenizer(lua_State *L, int i){
+	GTokenizeState* THIS = luaL_checkudata(L, i, (TOKENIZER_CLASS_NAME));
+	if (THIS == NULL) luaL_error(L, 
+		"userdata '%s' object has been freed", (TOKENIZER_CLASS_NAME));
+	return THIS;
+}
+
+
+static int lua_new_Tokenizer(lua_State *L){
+  size_t ls, lp;
+  const char *s = luaL_checklstring(L, 1, &ls);
+  const char *p = luaL_checklstring(L, 2, &lp);
+  GTokenizeState *gm = lua_newuserdata(L, sizeof(GTokenizeState));
+	luaL_setmetatable(L, (TOKENIZER_CLASS_NAME));
+  gm->src = s; gm->p = p; gm->lastmatch = NULL;
+  gm->L = L;
+  gm->src_init = s;
+  gm->src_utf8 = s;
+  gm->idx_utf8 = 0;
+  gm->line = 1;
+  gm->col = 1;
+	gm->src_end = s + ls;
+  gm->p_end = p + lp;
+	return 1;
+}
+
+/*
+**		TOKENIZER_CLASS_NAME metaevents
+*/
+static int GTokenizeState_gc(lua_State *L){
+	GTokenizeState* THIS = lua_check_Tokenizer(L, 1);
+	return 0;
+}
+
+static int GTokenizeState_tostring(lua_State *L){
+	GTokenizeState* THIS = lua_check_Tokenizer(L, 1);
+	lua_pushfstring (L, "userdata<%s>: %p", 
+		(TOKENIZER_CLASS_NAME), THIS);
+	return 1;
+}
+
+
+/*
+**		TOKENIZER_CLASS_NAME methods
+*/
+static int GTokenizer_next(lua_State *L){
+	GTokenizeState* gm = lua_check_Tokenizer(L, 1);
+	return str_tokenize_aux0(L, gm);
+}
+
+static int GTokenizer_getpos(lua_State *L){
+	GTokenizeState* gm = lua_check_Tokenizer(L, 1);
+	lua_pushinteger(L, gm->line);
+	lua_pushinteger(L, gm->col);
+  return 2;
+}
+
+static int GTokenizer_getstate(lua_State *L){
+	GTokenizeState* gm = lua_check_Tokenizer(L, 1);
+  GTokenAnchor *an = lua_newuserdata(L, sizeof(GTokenAnchor));
+	luaL_setmetatable(L, (TOKENIZER_POS_NAME));
+	*an = *(GTokenAnchor *)gm;
+  return 1;
+}
+
+
+GTokenAnchor*  lua_check_TokenizerAnchor(lua_State *L, int i){
+	GTokenAnchor* THIS = luaL_checkudata(L, i, (TOKENIZER_POS_NAME));
+	if (THIS == NULL) luaL_error(L, 
+		"userdata '%s' object has been freed", (TOKENIZER_POS_NAME));
+	return THIS;
+}
+
+static int GTokenizePos_tostring(lua_State *L){
+	GTokenAnchor* an = lua_check_TokenizerAnchor(L, 1);
+	lua_pushfstring (L, "userdata<%s>: %p %d %d", 
+		(TOKENIZER_POS_NAME), an, an->line, an->col);
+	return 1;
+}
+
+/*
+**		Class registration
+*/
+int lua_init_Tokenizer(lua_State *L) {
+
+	luaL_Reg TOKENIZER_CLASS_NAME_lib[] = {
+		 { "next", GTokenizer_next },
+		 { "getpos", GTokenizer_getpos },
+		 { "\xd1\x8f\xd0\xba\xd0\xbe\xd1\x80\xd1\x8c", GTokenizer_getstate },
+		{ NULL, NULL }
+	};
+	
+	luaL_Reg TOKENIZER_CLASS_NAME_mt[] = {
+		 { "__gc", GTokenizeState_gc },
+		 { "__call", GTokenizer_next },
+		 { "__tostring", GTokenizeState_tostring },
+		{ NULL, NULL }
+	};
+		
+	LuaM_userdata_register_class(L, 
+		(TOKENIZER_CLASS_NAME), 
+		TOKENIZER_CLASS_NAME_lib, 
+		TOKENIZER_CLASS_NAME_mt
+	);
+
+
+	luaL_Reg TOKENIZER_POS_NAME_lib[] = {
+		{ NULL, NULL }
+	};
+	
+	luaL_Reg TOKENIZER_POS_NAME_mt[] = {
+		 { "__tostring", GTokenizePos_tostring },
+		{ NULL, NULL }
+	};
+		
+	LuaM_userdata_register_class(L, 
+		(TOKENIZER_POS_NAME), 
+		TOKENIZER_POS_NAME_lib, 
+		TOKENIZER_POS_NAME_mt
+	);
+
+	// lua_newtable(L);
+	// lua_pushcfunction(L, lua_new_Tokenizer);
+	// lua_setfield(L, -2, (TOKENIZER_CLASS_NAME)); 
+	// lua_pop(L, 1);
+	
+	return 1;
+}
+
+
+
+
+
 
 
 static int str_upper (lua_State *L) {
@@ -1849,6 +2050,8 @@ static const luaL_Reg strlib[] = {
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb7\xd0\xb0\xd0\xbf\xd0\xbe\xd0\xbc\xd0\xbd\xd0\xb8\xd1\x82\xd1\x8c", str_tokenize_savestate},
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xb2\xd0\xb5\xd1\x80\xd0\xbd\xd1\x83\xd1\x82\xd1\x8c", str_tokenize_loadstate},
   {"\xd1\x82\xd0\xbe\xd0\xba\xd0\xb8\xd1\x82\xd0\xb5\xd1\x80\x5f\xd0\xbf\xd0\xbe\xd0\xb7\xd0\xb8\xd1\x86\xd0\xb8\xd1\x8f", str_tokenize_getpos},
+  {"\xd0\xbb\xd0\xb5\xd0\xba\xd1\x81\xd0\xb5\xd1\x80", lua_new_Tokenizer},
+  {"\xd0\xb4\xd0\xb0\xd0\xbd\xd0\xbd\xd1\x8b\xd0\xb5", str_tokenize_ref},
 
   {NULL, NULL}
 };
@@ -1870,6 +2073,7 @@ static void createmetatable (lua_State *L) {
 ** Open string library
 */
 LUAMOD_API int luaopen_string (lua_State *L) {
+lua_init_Tokenizer(L);
   luaL_newlib(L, strlib);
   createmetatable(L);
   return 1;
